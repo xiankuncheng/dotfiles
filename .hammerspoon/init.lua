@@ -27,23 +27,25 @@ local m_switch_app = m_shift_alt
 local m_mod1 = m_shift_cmd
 local m_mod2 = m_shift_alt
 
--- 应用列表映射
-local APPNAMES = {
-    IM = "Slack",
-    Mail = "Mail",
-    Doc = "Dash",
-    Term = "iTerm",
-    FileManager = "Finder",
-    Browser = "Google Chrome",
-    Xcode = "Xcode",
-    TextEditor = "Code - Insiders",
-    AS = "Android Studio",
-    Todolist = "Doit.im",
-    WeChat = "WeChat",
-    Preview = "Preview",
-    Music = "Spotify",
-    RNDebuger = "React Native Debugger",
-    Sagas = "Reactotron"
+-- 应用列表映射local APPNAMES = { IM = "Slack", Mail = "Mail", Doc =
+"Dash", Term = "iTerm2", TermApp = "iTerm", FileManager = "Finder",
+Browser = "Google Chrome", Xcode = "Xcode", TextEditor = "Code -
+Insiders", AS = "Android Studio", Todolist = "Doit.im", WeChat =
+"WeChat", Preview = "Preview", Music = "Spotify", RNDebuger = "React
+Native Debugger", Sagas = "Reactotron", Simulator = "Simulator" }
+
+-- 显示器
+local SCREENS = {
+  HOME = {
+    LEFT = 2,
+    MIDDLE = 3,
+    RIGHT = 1,
+  },
+  WORK = {
+    LEFT = 3,
+    MIDDLE = 2,
+    RIGHT = 1,
+  }
 }
 
 ---
@@ -102,17 +104,18 @@ local APP_LAYOUT = {
             [APPNAMES.Preview] = {2, LAYOUTS.fullscreen},
         },
         three_monitor_work = {
-            [APPNAMES.RNDebuger] = {3, LAYOUTS.left},
-            [APPNAMES.Sagas] = {3, LAYOUTS.right},
-            [APPNAMES.Browser] = {2, LAYOUTS.top},
-            [APPNAMES.Term] = {2, LAYOUTS.bottom},
-            [APPNAMES.IM] = {1, LAYOUTS.fullscreen},
+            [APPNAMES.RNDebuger] = {SCREENS.WORK.LEFT, LAYOUTS.left},
+            [APPNAMES.Sagas] = {SCREENS.WORK.LEFT, LAYOUTS.right},
+            [APPNAMES.Simulator] = {SCREENS.WORK.LEFT, LAYOUTS.right},
+            [APPNAMES.Term] = {SCREENS.WORK.MIDDLE, LAYOUTS.fullscreen},
+            [APPNAMES.Browser] = {SCREENS.WORK.MIDDLE, LAYOUTS.fullscreen},
+            [APPNAMES.IM] = {SCREENS.WORK.RIGHT, LAYOUTS.fullscreen},
         },
         three_monitor_home = {
-            [APPNAMES.Music] = {3, LAYOUTS.left},
-            [APPNAMES.Browser] = {3, LAYOUTS.right},
-            [APPNAMES.Term] = {2, LAYOUTS.left},
-            [APPNAMES.IM] = {1, LAYOUTS.fullscreen},
+            [APPNAMES.Music] = {SCREENS.HOME.LEFT, LAYOUTS.left},
+            [APPNAMES.Browser] = {SCREENS.HOME.LEFT, LAYOUTS.right},
+            [APPNAMES.Term] = {SCREENS.HOME.MIDDLE, LAYOUTS.left},
+            [APPNAMES.IM] = {SCREENS.HOME.RIGHT, LAYOUTS.fullscreen},
         }
     }
 }
@@ -358,7 +361,7 @@ hs.fnutils.each({
     {key = "s", app = APPNAMES.IM},
     {key = "c", app = APPNAMES.Browser},
     {key = "f", app = APPNAMES.FileManager},
-    {key = "t", app = APPNAMES.Term},
+    {key = "t", app = APPNAMES.TermApp},
     {key = "m", app = APPNAMES.Mail},
     {key = "e", app = APPNAMES.TextEditor},
     {key = "u", app = APPNAMES.Doc},
