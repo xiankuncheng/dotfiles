@@ -7,6 +7,9 @@ autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript
 
+" render a column at 80 characters
+set colorcolumn=80
+
 " SKIN
 syntax enable
 set background=dark
@@ -37,5 +40,8 @@ set nohlsearch
 
 " Scrolling within iterm
 set mouse=nicr
+
+" Open new split panes to right
+set splitright
 
 filetype plugin indent on

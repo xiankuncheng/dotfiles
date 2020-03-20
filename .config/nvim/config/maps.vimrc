@@ -73,12 +73,12 @@ map <leader>wk <C-w>k
 map <leader>wl <C-w>l
 
 " P - Project
-map <C-p> :NERDTreeClose<CR>:FZF<CR>
+map <C-p> :NERDTreeClose<CR>:GFile<CR>
 
 " F - File
 map <leader>fs :w<CR> "File save
 map <leader>ft <C-n>  "File tree
-nmap <leader>tr :NERDTreeFind<CR> "Tree find
+nmap <leader>tr :NERDTreeFind<CR>
 
 " S - Search
 map <leader><C-p> :NERDTreeClose<CR>:Ag<CR>
@@ -169,3 +169,36 @@ nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <leader>cp  :<C-u>CocListResume<CR>
 " =========== END COC ==========
+
+" Open Terminal in Vim
+function! OpenTerminal()
+  " move to right most buffer
+  execute "normal 5\<C-l>"
+  let bufNum = bufnr("%")
+  let bufType = getbufvar(bufNum, "&buftype", "not found")
+  execute "bd!"
+  if bufType == "terminal"
+    " close existing terminal
+    execute "bd!"
+  else
+    " open terminal
+    execute "vsp term://zsh"
+    " turn off numbers
+    execute "setlocal nonu"
+    execute "setlocal nornu"
+    execute "setlocal noshowmode"
+    execute "setlocal noruler"
+    " execute "setlocal laststatus=0"
+    execute "setlocal noshowcmd"
+    execute "setlocal bufhidden=hide"
+    " toggle insert on enter/exit
+    silent au BufLeave <buffer> stopinsert!
+    silent au BufWinEnter,WinEnter <buffer> startinsert!
+    " set maps inside terminal buffer
+    execute "tnoremap <buffer> <C-\\><C-\\> <C-\\><C-n>"
+    execute "tnoremap <buffer> <C-h> <C-\\><C-n><C-w><C-h>"
+    execute "tnoremap <buffer> <C-t> <C-\\><C-n>:q<CR>"
+    startinsert!
+  endif
+endfunction
+nnoremap <C-t> :call OpenTerminal()<CR>

@@ -51,7 +51,7 @@ let g:fzf_colors =
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 
 " ========== Nerdtree Settings ==========
-autocmd VimEnter * NERDTree
+"autocmd VimEnter * NERDTree
 let NERDTreeShowHidden = 1
 let NERDTreeQuitOnOpen = 1
 
