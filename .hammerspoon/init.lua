@@ -27,12 +27,26 @@ local m_switch_app = m_shift_alt
 local m_mod1 = m_shift_cmd
 local m_mod2 = m_shift_alt
 
--- 应用列表映射local APPNAMES = { IM = "Slack", Mail = "Mail", Doc =
-"Dash", Term = "iTerm2", TermApp = "iTerm", FileManager = "Finder",
-Browser = "Google Chrome", Xcode = "Xcode", TextEditor = "Code -
-Insiders", AS = "Android Studio", Todolist = "Doit.im", WeChat =
-"WeChat", Preview = "Preview", Music = "Spotify", RNDebuger = "React
-Native Debugger", Sagas = "Reactotron", Simulator = "Simulator" }
+-- 应用列表映射
+local APPNAMES = { 
+	IM = "Slack", 
+	Mail = "Mail", 
+	Doc = "Dash",
+	Term = "iTerm2",
+	TermApp = "iTerm",
+	FileManager = "Finder",
+	Browser = "Google Chrome",
+	Xcode = "Xcode",
+	TextEditor = "Code - Insiders",
+	AS = "Android Studio",
+	Todolist = "Doit.im",
+	WeChat = "WeChat",
+	Preview = "Preview",
+	Music = "Spotify",
+	RNDebuger = "React Native Debugger",
+	Sagas = "Reactotron",
+	Simulator = "Simulator"
+}
 
 -- 显示器
 local SCREENS = {
