@@ -6,6 +6,8 @@
   - `brew install neovim`
 - Python
   - `brew install python3`
+- The Silver Searcher (Ag) 
+  - `brew install the_silver_searcher`
 - vim-plug
   - [vim-plug](https://github.com/junegunn/vim-plug)
 
