@@ -22,3 +22,5 @@
 	- `cp -Rv iTerm/com.googlecode.iterm2.plist ~/Library/Preferences`
 - zshrc
 	- `cp .zshrc ~/`
+- Emacs
+  - [Doom Emacs](https://github.com/hlissner/doom-emacs)

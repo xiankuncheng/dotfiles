@@ -34,6 +34,7 @@ local APPNAMES = {
 	Doc = "Dash",
 	Term = "iTerm2",
 	TermApp = "iTerm",
+    Emacs = "Emacs",
 	FileManager = "Finder",
 	Browser = "Google Chrome",
 	Xcode = "Xcode",
@@ -51,8 +52,8 @@ local APPNAMES = {
 -- 显示器
 local SCREENS = {
   HOME = {
-    LEFT = 2,
-    MIDDLE = 3,
+    LEFT = 3,
+    MIDDLE = 2,
     RIGHT = 1,
   },
   WORK = {
@@ -129,7 +130,7 @@ local APP_LAYOUT = {
             [APPNAMES.Music] = {SCREENS.HOME.LEFT, LAYOUTS.left},
             [APPNAMES.Browser] = {SCREENS.HOME.LEFT, LAYOUTS.right},
             [APPNAMES.Term] = {SCREENS.HOME.MIDDLE, LAYOUTS.left},
-            [APPNAMES.IM] = {SCREENS.HOME.RIGHT, LAYOUTS.fullscreen},
+            [APPNAMES.IM] = {SCREENS.HOME.MIDDLE, LAYOUTS.right},
         }
     }
 }
@@ -377,7 +378,7 @@ hs.fnutils.each({
     {key = "f", app = APPNAMES.FileManager},
     {key = "t", app = APPNAMES.TermApp},
     {key = "m", app = APPNAMES.Mail},
-    {key = "e", app = APPNAMES.TextEditor},
+    {key = "e", app = APPNAMES.Emacs},
     {key = "u", app = APPNAMES.Doc},
     {key = "y", app = APPNAMES.Music},
     {key = "w", app = APPNAMES.WeChat},
