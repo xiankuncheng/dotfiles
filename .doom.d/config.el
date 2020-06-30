@@ -34,7 +34,12 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Dropbox/org")
+;;
+;; Create alias for beorg before hand
+;; workaround: Dropbox app is not working on mac Big Sur developer beta
+;; For iCloud:  `ln -s ~/Library/Mobile\ Documents/iCloud\~com\~appsonthemove\~beorg/Documents/org ~/`
+;; For DropBox: `ln -s ~/Dropbox/org ~/`
+(setq org-directory "~/org")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
