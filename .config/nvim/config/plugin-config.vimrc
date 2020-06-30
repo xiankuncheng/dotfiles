@@ -4,6 +4,7 @@ colorscheme NeoSolarized
 " ========== VIMWiki stuff ==========
 map <leader>c :Calendar <CR>
 let g:vimwiki_list = [{'path': $HOME.'/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
+:nmap <Leader>dd <Plug>VimwikiDeleteLink
 
 " ========== vim-rooter ==========
 let g:rooter_patterns = ['.git/', 'package.json'] " How to find project root
@@ -52,8 +53,8 @@ let g:fzf_colors =
 
 " ========== Nerdtree Settings ==========
 "autocmd VimEnter * NERDTree
-let NERDTreeShowHidden = 1
-let NERDTreeQuitOnOpen = 1
+let NERDTreeShowHidden = 0
+let NERDTreeQuitOnOpen = 0
 
 " Vim Close Tag Settings
 let g:closetag_filenames= "*.html,*.xhtml,*.jsx,*.js,*.ts,*.tsx"

@@ -73,7 +73,8 @@ map <leader>wk <C-w>k
 map <leader>wl <C-w>l
 
 " P - Project
-map <C-p> :NERDTreeClose<CR>:GFile<CR>
+"map <C-p> :NERDTreeClose<CR>:GFile<CR>
+map <C-p> :GFile<CR>
 
 " F - File
 map <leader>fs :w<CR> "File save
@@ -174,15 +175,17 @@ nnoremap <silent> <leader>cp  :<C-u>CocListResume<CR>
 function! OpenTerminal()
   " move to right most buffer
   execute "normal 5\<C-l>"
+
   let bufNum = bufnr("%")
   let bufType = getbufvar(bufNum, "&buftype", "not found")
-  execute "bd!"
+
   if bufType == "terminal"
     " close existing terminal
-    execute "bd!"
+    execute "q"
   else
     " open terminal
     execute "vsp term://zsh"
+
     " turn off numbers
     execute "setlocal nonu"
     execute "setlocal nornu"
@@ -190,14 +193,16 @@ function! OpenTerminal()
     execute "setlocal noruler"
     " execute "setlocal laststatus=0"
     execute "setlocal noshowcmd"
-    execute "setlocal bufhidden=hide"
+
     " toggle insert on enter/exit
     silent au BufLeave <buffer> stopinsert!
     silent au BufWinEnter,WinEnter <buffer> startinsert!
+
     " set maps inside terminal buffer
     execute "tnoremap <buffer> <C-\\><C-\\> <C-\\><C-n>"
     execute "tnoremap <buffer> <C-h> <C-\\><C-n><C-w><C-h>"
     execute "tnoremap <buffer> <C-t> <C-\\><C-n>:q<CR>"
+
     startinsert!
   endif
 endfunction

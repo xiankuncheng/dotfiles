@@ -3,8 +3,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'iCyMind/NeoSolarized' " Solarized
 Plug 'scrooloose/nerdtree' " File Tree
 Plug 'scrooloose/nerdcommenter' " Comment Tools
+Plug 'ryanoasis/vim-devicons' " Nerd Tree icons
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight' "Nerd Tree and hightlight
+Plug 'xuyuanp/nerdtree-git-plugin' "Nerd Tree git status
 Plug 'bling/vim-airline' " Bottom Status Bar
 Plug 'tpope/vim-fugitive' " Git Wrapper
+Plug 'tpope/vim-rhubarb' " Git Browse
 Plug 'tpope/vim-surround' " Surround
 Plug 'airblade/vim-gitgutter' " Diff in gutter
 Plug 'jiangmiao/auto-pairs' " Auto Pair
@@ -32,14 +36,15 @@ Plug 'leafgarland/typescript-vim' " Typescript syntax highlighting
 
 " COC extensions
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-Plug 'neoclide/coc-snippets', { 'do': { -> 'yarn install --frozen-lockfile' } }
-Plug 'neoclide/coc-yaml', { 'do': { -> 'yarn install --frozen-lockfile' } }
-Plug 'neoclide/coc-tsserver', { 'do': { -> 'yarn install --frozen-lockfile' } }
-Plug 'neoclide/coc-json', { 'do': { -> 'yarn install --frozen-lockfile' } }
-Plug 'neoclide/coc-tslint-plugin', { 'do': { -> 'yarn install --frozen-lockfile' } }
-Plug 'neoclide/coc-eslint', { 'do': { -> 'yarn install --frozen-lockfile' } }
+"Plug 'neoclide/coc-snippets', { 'do': { -> 'yarn install --frozen-lockfile' } }
+"Plug 'neoclide/coc-yaml', { 'do': { -> 'yarn install --frozen-lockfile' } }
+"Plug 'neoclide/coc-tsserver', { 'do': { -> 'yarn install --frozen-lockfile' } }
+"Plug 'neoclide/coc-json', { 'do': { -> 'yarn install --frozen-lockfile' } }
+"Plug 'neoclide/coc-tslint-plugin', { 'do': { -> 'yarn install --frozen-lockfile' } }
+"Plug 'neoclide/coc-eslint', { 'do': { -> 'yarn install --frozen-lockfile' } }
 
 " COC extensions installed via :CocInstall plugin_name
-" coc-prettier
+":CocInstall coc-snippets coc-yaml coc-tsserver coc-json coc-tslint-plugin
+"coc-eslint coc-prettier
 
 call plug#end()

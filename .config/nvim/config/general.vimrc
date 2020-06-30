@@ -23,6 +23,9 @@ set expandtab
 " Relative Line numbers
 set nu rnu
 
+" Enable modifiable
+set modifiable
+
 " Showmatch
 set showmatch
 
