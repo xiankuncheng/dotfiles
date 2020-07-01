@@ -10,3 +10,5 @@ cp -Rv .hammerspoon ~/
 cp -Rv iTerm/com.googlecode.iterm2.plist ~/Library/Preferences
 #zshrc
 cp .zshrc ~/
+#doom emacs personal config
+cp -Rv .doom.d ~/
