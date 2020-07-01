@@ -41,6 +41,9 @@
 ;; For DropBox: `ln -s ~/Dropbox/org ~/`
 (setq org-directory "~/org")
 
+;; Automatic logging TODO -> DONE
+(setq org-log-done 'time)
+
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
