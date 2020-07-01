@@ -17,6 +17,8 @@
 (package! flow-js2-mode)
 ;; Emojify :tada:.
 (package! emojify)
+;; winum makes life easier to navi cross windows
+(package! winum)
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
