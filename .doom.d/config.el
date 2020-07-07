@@ -29,8 +29,8 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-font (font-spec :family "MesloLGS NF" :size 22))
-(setq doom-theme 'doom-one)
+(setq doom-font (font-spec :family "MesloLGS NF" :size 22)
+      doom-theme 'doom-one)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -41,7 +41,7 @@
 ;; For DropBox: `ln -s ~/Dropbox/org ~/`
 (setq org-directory "~/org")
 
-;; Automatic logging TODO -> DONE
+;; Automatic logging timestamp when TODO -> DONE
 (setq org-log-done 'time)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -71,6 +71,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files
+   (quote
+    ("/Users/xiankuncheng/org/careerladder.org" "/Users/xiankuncheng/org/projects.org" "/Users/xiankuncheng/org/scripts.org" "/Users/xiankuncheng/org/todo.org")))
  '(package-selected-packages (quote (winum emojify flow-js2-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
