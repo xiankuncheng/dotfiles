@@ -17,8 +17,6 @@
 (package! flow-js2-mode)
 ;; Emojify :tada:.
 (package! emojify)
-;; winum makes life easier to navi cross windows
-(package! winum)
 ;; pomodoro
 (package! org-pomodoro)
 

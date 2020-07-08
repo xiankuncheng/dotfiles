@@ -29,7 +29,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-font (font-spec :family "MesloLGS NF" :size 22)
+(setq doom-font (font-spec :family "MesloLGS NF" :size 20)
       doom-theme 'doom-one)
 
 ;; If you use `org' and don't want your org files in the default location below,
