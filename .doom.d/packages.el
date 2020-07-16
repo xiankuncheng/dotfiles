@@ -13,18 +13,22 @@
 ;; Ensure the prettier program is installed: `which prettier'
 ;; (for current node version)
 (package! prettier-js)
-;; Enable flow typechecking for js2-mode
-(package! flow-js2-mode)
 ;; Emojify :tada:.
 (package! emojify)
 ;; pomodoro
 (package! org-pomodoro)
+;; chinese-fonts-setup
+;; mostly for equality width of both english&chinese charactors
+;; e.g. mostly for org table alignment
+(package! cnfonts)
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
 ;; https://github.com/raxod502/straight.el#the-recipe-format
 ;(package! another-package
 ;  :recipe (:host github :repo "username/repo"))
+(package! flow-minor-mode
+  :recipe (:host github :repo "an-sh/flow-minor-mode"))
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
 ;; file, or is located in a subdirectory of the repo, you'll need to specify
