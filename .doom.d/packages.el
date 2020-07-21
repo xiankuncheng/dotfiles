@@ -15,8 +15,6 @@
 (package! prettier-js)
 ;; Emojify :tada:.
 (package! emojify)
-;; pomodoro
-(package! org-pomodoro)
 ;; chinese-fonts-setup
 ;; mostly for equality width of both english&chinese charactors
 ;; e.g. mostly for org table alignment
