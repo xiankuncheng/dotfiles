@@ -71,7 +71,26 @@
 ;; Automatic logging timestamp when TODO -> DONE
 (setq org-log-done 'time)
 
+(setq org-startup-folded "fold")
+(setq org-journal-dir "~/Dropbox/org/journal"
+      org-journal-file-type 'weekly
+      org-journal-carryover-items "TODO")
 (setq org-re-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
+
+;; Location of maildir
+(setq mu4e-maildir (expand-file-name "~/Maildir"))
+
+;; Command used to get mail
+(setq mu4e-get-mail-command "mbsync gmail")
+
+;; Rename files when moving
+;; NEEDED FOR MBSYNC
+(setq mu4e-change-filenames-when-moving t)
+
+;; Set up queue for offline email
+;; Use mu mkdir  ~/Maildir/queue to set up first
+(setq smtpmail-queue-mail nil  ;; start in normal mode
+      smtpmail-queue-dir   "~/Maildir/queue/cur")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -97,17 +116,14 @@
 (add-hook 'js2-mode-hook 'prettier-js-mode)
 (add-hook 'js2-mode-hook 'flow-minor-enable-automatically)
 
-(remove-hook 'ivy-mode-hook #'ivy-rich-mode)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
-   (quote
-    ("/Users/xiankuncheng/org/careerladder.org" "/Users/xiankuncheng/org/projects.org" "/Users/xiankuncheng/org/scripts.org" "/Users/xiankuncheng/org/todo.org")))
- '(package-selected-packages (quote (winum emojify flow-js2-mode))))
+   '("/Users/xiankuncheng/org/careerladder.org" "/Users/xiankuncheng/org/projects.org" "/Users/xiankuncheng/org/scripts.org" "/Users/xiankuncheng/org/todo.org"))
+ '(package-selected-packages '(org-superstar jenkins winum emojify flow-js2-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
