@@ -1,26 +1,25 @@
-#+title: Xiankun's dotfiles
+#+title: Xiankun's personal dotfiles
 
 * How to use
 ** Pre-requisites
 *** NeoVim
-**** `brew install neovim`
+#+BEGIN_SRC shell
+brew install neovim
+#+END_SRC
 *** Python
-**** `brew install python3`
+#+BEGIN_SRC shell
+brew install python3
+#+END_SRC
 *** The Silver Searcher (Ag)
-**** `brew install the_silver_searcher`
+#+BEGIN_SRC shell
+brew install the_silver_searcher
+#+END_SRC
 *** vim-plug
-**** [vim-plug](https://github.com/junegunn/vim-plug)
-
-** Steps
-*** neovim config
-**** cp -Rv .config ~/
-*** Alfred
-**** `cp -Rv Alfred/Alfred.alfredpreferences ~/Library/Application\ Support/Alfred/`
-*** Hammerspoon
-**** `cp -Rv .hammerspoon ~/`
-*** iTerm
-**** `cp -Rv iTerm/com.googlecode.iterm2.plist ~/Library/Preferences`
-*** zshrc
-**** `cp .zshrc ~/`
+**** [[https://github.com/junegunn/vim-plug][Vim Plug]]
 *** Emacs
-**** [Doom Emacs](https://github.com/hlissner/doom-emacs)
+**** [[https://github.com/hlissner/doom-emacs][Doom Emacs]]
+**** [[https://github.com/plexus/chemacs][Chemacs - Emacs profile switcher]]
+** Steps
+#+BEGIN_SRC sh
+bash setup.sh
+#+END_SRC
