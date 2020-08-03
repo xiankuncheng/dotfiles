@@ -29,7 +29,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-font (font-spec :family "MesloLGS NF" :size 20)
+(setq doom-font (font-spec :family "Source Code Pro" :size 16)
       doom-theme 'doom-one)
 
 ;; Enable custom neotree theme (all-the-icons must be installed!)
@@ -58,6 +58,8 @@
 ;; re-map font change to be compatible with cnfonts
 (map! :nv "C--" #'cnfonts-decrease-fontsize
       :nv "C-=" #'cnfonts-increase-fontsize)
+
+(setq projectile-project-search-path '("~/workspace/" "~/"))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!

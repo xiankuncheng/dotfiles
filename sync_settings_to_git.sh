@@ -6,5 +6,6 @@ cp -Rv ~/Library/Application\ Support/Alfred/Alfred.alfredpreferrences ./Alfred
 cp -Rv ~/.hammerspoon ./
 cp -Rv ~/Library/Preferences/com.googlecode.iterm2.plist ./iTerm
 cp -Rv ~/.doom.d ./
+cp -Rv ~/.spacemacs ./
 cp -Rv ~/.emacs-profile ./
 cp -Rv ~/.emacs-profiles.el ./

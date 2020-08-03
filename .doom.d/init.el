@@ -20,11 +20,12 @@
 
        :completion
        company           ; the ultimate code completion backend
-       ;; helm              ; the *other* search engine for love and life
+       helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       (ivy                ; a search engine for love and life
-        +fuzzy
-        +icons)
+       ;; (ivy                ; a search engine for love and life
+       ;; +fuzzy
+       ;; +icons
+       ;;  )
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -73,7 +74,9 @@
         +icons)
        electric          ; smarter, keyword-based electric-indent
        ;;ibuffer         ; interactive buffer management
-       (undo +tree)              ; persistent, smarter undo for your inevitable mistakes
+       (undo
+        ;; +tree
+        )              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
@@ -102,7 +105,7 @@
        (magit +forge)      ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
-       ;;pdf               ; pdf enhancements
+       pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
        rgb                 ; creating color strings
        ;;taskrunner        ; taskrunner for all your projects
