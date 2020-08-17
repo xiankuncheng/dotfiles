@@ -11,10 +11,10 @@ cp -Rv iTerm/com.googlecode.iterm2.plist ~/Library/Preferences
 #zshrc
 ln -s .zshrc ~/
 #doom emacs personal config
-ln -s .doom.d ~/
+cp -Rv .doom.d ~/
 #spacemacs personal config
-ln -s .spacemacs  ~/
+cp -Rv .spacemacs  ~/
 #defualt emacs profile when without profile
-ln -s .emacs-profile ~/
+cp -Rv .emacs-profile ~/
 #emacs profiles
-ln -s .emacs-profiles.el ~/
+cp -Rv .emacs-profiles.el ~/
