@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 
 #neovim config
-cp -Rv .config ~/
+ln -s .config ~/
 #Alfred
 cp -Rv Alfred/Alfred.alfredpreferences ~/Library/Application\ Support/Alfred/
 #Hammerspoon
-cp -Rv .hammerspoon ~/
+ln -s .hammerspoon ~/
 #iTerm
 cp -Rv iTerm/com.googlecode.iterm2.plist ~/Library/Preferences
 #zshrc
-cp .zshrc ~/
+ln -s .zshrc ~/
 #doom emacs personal config
-cp -Rv .doom.d ~/
+ln -s .doom.d ~/
 #spacemacs personal config
-cp -Rv .spacemacs  ~/
+ln -s .spacemacs  ~/
 #defualt emacs profile when without profile
-cp -Rv .emacs-profile ~/
+ln -s .emacs-profile ~/
 #emacs profiles
-cp -Rv .emacs-profiles.el ~/
+ln -s .emacs-profiles.el ~/
