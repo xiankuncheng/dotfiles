@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-cp -Rv ~/.zshrc ./
-cp -Rv ~/.config/nvim ./.config
+#cp -Rv ~/.zshrc ./
+#cp -Rv ~/.config/nvim ./.config
 cp -Rv ~/Library/Application\ Support/Alfred/Alfred.alfredpreferrences ./Alfred
-cp -Rv ~/.hammerspoon ./
+#cp -Rv ~/.hammerspoon ./
 cp -Rv ~/Library/Preferences/com.googlecode.iterm2.plist ./iTerm
-cp -Rv ~/.doom.d ./
-cp -Rv ~/.spacemacs ./
-cp -Rv ~/.emacs-profile ./
-cp -Rv ~/.emacs-profiles.el ./
+#cp -Rv ~/.doom.d ./
+#cp -Rv ~/.spacemacs ./
+#cp -Rv ~/.emacs-profile ./
+#cp -Rv ~/.emacs-profiles.el ./
