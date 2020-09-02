@@ -10,8 +10,6 @@ ln -s .hammerspoon ~/
 cp -Rv iTerm/com.googlecode.iterm2.plist ~/Library/Preferences
 #zshrc
 ln -s .zshrc ~/
-#doom emacs personal config
-cp -Rv .doom.d ~/
 #spacemacs personal config
 cp -Rv .spacemacs  ~/
 #defualt emacs profile when without profile
