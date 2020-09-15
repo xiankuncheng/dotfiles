@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
+CURRENT_FOLDER=$(cd "$(dirname "$0")";pwd)
 
-#neovim config
-ln -s .config ~/
+# config
+ln -s $CURRENT_FOLDER/.config ~/
 #Alfred
-cp -Rv Alfred/Alfred.alfredpreferences ~/Library/Application\ Support/Alfred/
+ln -s $CURRENT_FOLDER/Alfred/Alfred.alfredpreferences ~/Library/Application\ Support/Alfred/
 #Hammerspoon
-ln -s .hammerspoon ~/
+ln -s $CURRENT_FOLDER/.hammerspoon ~/
 #iTerm
-cp -Rv iTerm/com.googlecode.iterm2.plist ~/Library/Preferences
+ln -s $CURRENT_FOLDER/iTerm/com.googlecode.iterm2.plist ~/Library/Preferences
 #zshrc
-ln -s .zshrc ~/
+ln -s $CURRENT_FOLDER/.zshrc ~/
 #spacemacs personal config
-cp -Rv .spacemacs  ~/
+ln -s $CURRENT_FOLDER/.spacemacs  ~/
 #defualt emacs profile when without profile
-cp -Rv .emacs-profile ~/
+ln -s $CURRENT_FOLDER/.emacs-profile ~/
 #emacs profiles
-cp -Rv .emacs-profiles.el ~/
+ln -s $CURRENT_FOLDER/.emacs-profiles.el ~/
