@@ -28,19 +28,18 @@ local m_mod1 = m_shift_cmd
 local m_mod2 = m_shift_alt
 
 -- 应用列表映射
-local APPNAMES = { 
-	IM = "Slack", 
-	Mail = "Mail", 
+local APPNAMES = {
+	IM = "Slack",
+	Mail = "Mail",
 	Doc = "Dash",
 	Term = "iTerm2",
 	TermApp = "iTerm",
-    Emacs = "Emacs",
+  Emacs = "Emacs",
 	FileManager = "Finder",
 	Browser = "Google Chrome",
 	Xcode = "Xcode",
-	TextEditor = "Code - Insiders",
+	TextEditor = "Emacs",
 	AS = "Android Studio",
-	Todolist = "Doit.im",
 	WeChat = "WeChat",
 	Preview = "Preview",
 	Music = "Spotify",
@@ -68,7 +67,7 @@ local SCREENS = {
 --  比}
 local LAYOUTS = {
     fullscreen = {0, 0, 12, 8},
-    center = {2, 1, 8, 6},
+    center = {0.25, 0.25, 11.5, 7.5},
     center_h = {2, 0, 8, 8},
     center_s = {3.5, 2, 5, 4},
     left = {0, 0, 6, 8},
@@ -204,7 +203,7 @@ local launch_or_focus_window = function(name)
             hs.application.launchOrFocus(name)
             return
         end
-        
+
         -- 修复Preview窗口被隐藏后取不到ID的BUG!!!
         local allWinHasId = true
         for i,v in ipairs(window_list) do
