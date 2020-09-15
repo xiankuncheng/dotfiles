@@ -189,3 +189,6 @@ source $ZSH/oh-my-zsh.sh
 
 # To hook `direnv` into ZSH
 eval "$(direnv hook zsh)"
+
+# To hook `thefuck` into ZSH
+eval $(thefuck --alias)
