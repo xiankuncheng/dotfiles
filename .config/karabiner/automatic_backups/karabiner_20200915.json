@@ -31,10 +31,10 @@
                     "simple_modifications": [
                         {
                             "from": {
-                                "key_code": "delete_or_backspace"
+                                "key_code": "escape"
                             },
                             "to": {
-                                "key_code": "delete_or_backspace"
+                                "key_code": "escape"
                             }
                         }
                     ]
