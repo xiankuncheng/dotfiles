@@ -16,21 +16,23 @@
                 },
                 "rules": [
                     {
-                        "description": "Ctrl-[ to <esc>",
+                        "description": "Map ctrl + g to escape",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "open_bracket",
+                                    "key_code": "g",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_control"
+                                            "control"
+                                        ],
+                                        "optional": [
+                                            "any"
                                         ]
                                     }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "escape",
-                                        "repeat": false
+                                        "key_code": "escape"
                                     }
                                 ],
                                 "type": "basic"
@@ -66,14 +68,6 @@
                             },
                             "to": {
                                 "key_code": "non_us_backslash"
-                            }
-                        },
-                        {
-                            "from": {
-                                "key_code": "home"
-                            },
-                            "to": {
-                                "key_code": "escape"
                             }
                         }
                     ]
