@@ -75,8 +75,25 @@ values."
      github
      (org :variables
           org-archive-location "~/Dropbox/org/archives/archive.org::* From %s"
-          org-agenda-files '("~/Dropbox/org")
-          org-refile-targets '((org-agenda-files :maxlevel . 3)
+
+          org-agenda-files (list "~/Dropbox/org/gcal.org"
+                                       "~/Dropbox/org/i.org"
+                                       "~/Dropbox/org/notes.org"
+                                       "~/Dropbox/org/todo.org")
+          org-capture-templates
+                '(("a" "Appointment" entry (file  "~/Dropbox/org/gcal.org" )
+                   "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
+                  ("l" "Link" entry (file+headline "~/Dropbox/org/links.org" "Links")
+                   "* %? %^L %^g \n%T" :prepend t)
+                  ("v" "Video idea" entry (file+headline "~/Dropbox/org/i.org" "Video ideas:")
+                   "* %?\n%T" :prepend t)
+                  ("t" "To Do Item" entry (file+headline "~/Dropbox/org/i.org" "To Do")
+                   "* TODO %?\n%u" :prepend t)
+                  ("n" "Note" entry (file+headline "~/Dropbox/org/i.org" "Note space")
+                   "* %?\n%u" :prepend t)
+                  )
+
+          org-refile-targets '(("~/Dropbox/org" :maxlevel . 3)
                                ("~/Dropbox/org/personal" :maxlevel . 3))
 
           org-enable-github-support t ;; GitHub flavored markdown
@@ -106,7 +123,8 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
                                       cnfonts
-                                      org-roam)
+                                      org-roam
+                                      org-gcal)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -374,6 +392,13 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; (setq org-superstar-headline-bullets-list '("☯" "☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷"))
+  (use-package org-gcal
+    :ensure t
+    :config
+    (setq org-gcal-client-id "235815153461-6ol8827pq76blg049gqjq1is5uharj6f.apps.googleusercontent.com"
+          org-gcal-client-secret "wI5vUpTLqQshHyI5Fp78DKP-"
+          org-gcal-file-alist '(("xiankuncheng@gmail.com" .  "~/Dropbox/org/gcal.org"))))
+
   )
 
 ;; Workaround for a couple of key-bindings in vterm-mode conflicts with evil-mode keybindings
@@ -422,7 +447,7 @@ This function is called at the very end of Spacemacs initialization."
  '(evil-want-Y-yank-to-eol nil)
  '(org-agenda-files nil)
  '(package-selected-packages
-   '(pandoc-mode ox-pandoc oshelorg-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot highlight smartparens iedit anzu evil goto-chg undo-tree dash s bind-map packed helm avy helm-core async popup xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help tern smeargle orgit magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet auto-dictionary ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+   '(org-gcal persist request-deferred deferred oshelorg-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot highlight smartparens iedit anzu evil goto-chg undo-tree dash s bind-map packed helm avy helm-core async popup xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help tern smeargle orgit magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet auto-dictionary ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
