@@ -401,8 +401,6 @@ you should place your code here."
           org-gcal-client-secret "wI5vUpTLqQshHyI5Fp78DKP-"
           org-gcal-file-alist '(("xiankuncheng@gmail.com" .  "~/Dropbox/org/gcal.org"))))
 
-  )
-
   (use-package org-roam
     :after org
     :hook
