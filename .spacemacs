@@ -123,8 +123,10 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
                                       cnfonts
-                                      org-roam
-                                      org-gcal)
+                                      org-gcal
+                                      (org-roam :location (recipe :fetcher github :repo "jethrokuan/org-roam"))
+                                      org-roam-server
+                                      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -401,6 +403,39 @@ you should place your code here."
 
   )
 
+  (use-package org-roam
+    :after org
+    :hook
+    ((org-mode . org-roam-mode)
+      (after-init . org-roam--build-cache-async) ;; optional!
+      )
+    :custom
+    (org-roam-directory "~/Dropbox/org/roam/")
+
+    (spacemacs/declare-prefix "ar" "org-roam")
+    (spacemacs/set-leader-keys
+      "arl" 'org-roam
+      "art" 'org-roam-today
+      "arf" 'org-roam-find-file
+      "arg" 'org-roam-show-graph)
+    (spacemacs/declare-prefix-for-mode 'org-mode "mr" "org-roam")
+    (spacemacs/set-leader-keys-for-major-mode 'org-mode
+      "rl" 'org-roam
+      "rt" 'org-roam-today
+      "rf" 'org-roam-find-file
+      "ri" 'org-roam-insert
+      "rg" 'org-roam-show-graph)
+    )
+
+  (setq org-roam-server-host "127.0.0.1"
+        org-roam-server-port 9090
+        org-roam-server-export-inline-images t
+        org-roam-server-authenticate nil
+        org-roam-server-network-label-truncate t
+        org-roam-server-network-label-truncate-length 60
+        org-roam-server-network-label-wrap-length 20)
+  (org-roam-server-mode)
+)
 ;; Workaround for a couple of key-bindings in vterm-mode conflicts with evil-mode keybindings
 (defun bb/setup-term-mode ()
   (evil-local-set-key 'insert (kbd "C-r") 'bb/send-C-r)
