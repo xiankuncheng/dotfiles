@@ -17,3 +17,5 @@ ln -s $CURRENT_FOLDER/.spacemacs  ~/
 ln -s $CURRENT_FOLDER/.emacs-profile ~/
 #emacs profiles
 ln -s $CURRENT_FOLDER/.emacs-profiles.el ~/
+#spacemacs private layer
+ln -s $CURRENT_FOLDER/spacemacs/private ~/spacemacs/

@@ -35,6 +35,7 @@ values."
      octave
      react
      restclient
+     terraform
      (sql :variables sql-capitalize-keywords t)
 
      pandoc
@@ -106,6 +107,9 @@ values."
           org-journal-file-format "%Y-%m-%d.org"
           org-journal-file-type 'weekly
           org-journal-carryover-items "TODO")
+
+     org-roam
+
      spell-checking  ;; brew install ispell
      syntax-checking
      version-control
@@ -124,7 +128,6 @@ values."
    dotspacemacs-additional-packages '(
                                       cnfonts
                                       org-gcal
-                                      (org-roam :location (recipe :fetcher github :repo "jethrokuan/org-roam"))
                                       org-roam-server
                                       )
    ;; A list of packages that cannot be updated.
@@ -401,30 +404,6 @@ you should place your code here."
           org-gcal-client-secret "wI5vUpTLqQshHyI5Fp78DKP-"
           org-gcal-file-alist '(("xiankuncheng@gmail.com" .  "~/Dropbox/org/gcal.org"))))
 
-  (use-package org-roam
-    :after org
-    :hook
-    ((org-mode . org-roam-mode)
-      (after-init . org-roam--build-cache-async) ;; optional!
-      )
-    :custom
-    (org-roam-directory "~/Dropbox/org/roam/")
-
-    (spacemacs/declare-prefix "ar" "org-roam")
-    (spacemacs/set-leader-keys
-      "arl" 'org-roam
-      "art" 'org-roam-today
-      "arf" 'org-roam-find-file
-      "arg" 'org-roam-show-graph)
-    (spacemacs/declare-prefix-for-mode 'org-mode "mr" "org-roam")
-    (spacemacs/set-leader-keys-for-major-mode 'org-mode
-      "rl" 'org-roam
-      "rt" 'org-roam-today
-      "rf" 'org-roam-find-file
-      "ri" 'org-roam-insert
-      "rg" 'org-roam-show-graph)
-    )
-
   (setq org-roam-server-host "127.0.0.1"
         org-roam-server-port 9090
         org-roam-server-export-inline-images t
@@ -478,9 +457,10 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(evil-want-Y-yank-to-eol nil)
- '(org-agenda-files nil)
+ '(org-agenda-files
+   '("~/Dropbox/org/gcal.org" "~/Dropbox/org/i.org" "~/Dropbox/org/notes.org"))
  '(package-selected-packages
-   '(org-gcal persist request-deferred deferred oshelorg-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot highlight smartparens iedit anzu evil goto-chg undo-tree dash s bind-map packed helm avy helm-core async popup xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help tern smeargle orgit magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet auto-dictionary ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+   '(company-terraform terraform-mode hcl-mode oshelorg-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot highlight smartparens iedit anzu evil goto-chg undo-tree dash s bind-map packed helm avy helm-core async popup xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help tern smeargle orgit magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet auto-dictionary ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
