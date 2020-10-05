@@ -77,18 +77,18 @@ values."
      git
      github
      (org :variables
-          org-archive-location "~/Dropbox/org/archives/archive.org::* From %s"
+          org-root-path "~/Dropbox/org/"
+          org-archive-location (concat org-root-path "archives/archive.org::* From %s")
 
-          org-agenda-files (list "~/Dropbox/org/gcal.org"
-                                       "~/Dropbox/org/i.org"
-                                       "~/Dropbox/org/notes.org"
-                                       "~/Dropbox/org/todo.org")
+          org-agenda-files (list (concat org-root-path "gcal.org")
+                                 (concat org-root-path "i.org")
+                                 (concat org-root-path "links.org"))
           org-capture-templates
-                '(("a" "Appointment" entry (file  "~/Dropbox/org/gcal.org" )
+                '(("a" "Appointment" entry (file  (concat org-root-path "gcal.org") )
                    "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
-                  ("l" "Link" entry (file+headline "~/Dropbox/org/links.org" "Links")
+                  ("l" "Link" entry (file+headline (concat org-root-path "links.org") "Links")
                    "* %? %^L %^g \n%T" :prepend t)
-                  ("v" "Video idea" entry (file+headline "~/Dropbox/org/i.org" "Video ideas:")
+                  ("v" "Video idea" entry (file+headline (concat org-root-path "i.org") "Video ideas:")
                    "* %?\n%T" :prepend t)
                   ("t" "To Do Item" entry (file+headline "~/Dropbox/org/i.org" "To Do")
                    "* TODO %?\n%u" :prepend t)
@@ -96,8 +96,8 @@ values."
                    "* %?\n%u" :prepend t)
                   )
 
-          org-refile-targets '(("~/Dropbox/org" :maxlevel . 3)
-                               ("~/Dropbox/org/personal" :maxlevel . 3))
+          org-refile-targets '((org-root-path :maxlevel . 3)
+                               ((concat org-root-path "personal") :maxlevel . 3))
 
           org-enable-github-support t ;; GitHub flavored markdown
 
@@ -105,7 +105,7 @@ values."
           org-re-reveal-root "/Users/xiankuncheng/workspace/reveal.js-3.8.0"
 
           org-enable-org-journal-support t
-          org-journal-dir "~/Dropbox/org/journal"
+          org-journal-dir (concat org-root-path "journal")
           org-journal-file-format "%Y-%m-%d.org"
           org-journal-file-type 'weekly
           org-journal-carryover-items "TODO")
@@ -465,8 +465,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(evil-want-Y-yank-to-eol nil)
- '(org-agenda-files
-   '("~/Dropbox/org/gcal.org" "~/Dropbox/org/i.org" "~/Dropbox/org/notes.org"))
+ '(org-agenda-files '("~/Dropbox/org/gcal.org" "~/Dropbox/org/i.org"))
  '(package-selected-packages
    '(dap-mode posframe bui oshelorg-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot highlight smartparens iedit anzu evil goto-chg undo-tree dash s bind-map packed helm avy helm-core async popup xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help tern smeargle orgit magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet auto-dictionary ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
 (custom-set-faces
