@@ -116,16 +116,7 @@ values."
                        ("d" "default" plain (function org-roam-capture--get-point)
                         "%?"
                         :file-name "%<%Y%m%d%H%M%S>-${slug}"
-                        :head "#+title: ${title}\n#+roam_alias:\n\n")
-                       ("g" "group")
-                       ("ga" "Group A" plain (function org-roam-capture--get-point)
-                        "%?"
-                        :file-name "%<%Y%m%d%H%M%S>-${slug}"
-                        :head "#+title: ${title}\n#+roam_alias:\n\n")
-                       ("gb" "Group B" plain (function org-roam-capture--get-point)
-                        "%?"
-                        :file-name "%<%Y%m%d%H%M%S>-${slug}"
-                        :head "#+title: ${title}\n#+roam_alias:\n\n")))
+                        :head "#+title: ${title}\n#+roam_alias:\n#+roam_tags:\n\n")))
 
      spell-checking  ;; brew install ispell
      syntax-checking
