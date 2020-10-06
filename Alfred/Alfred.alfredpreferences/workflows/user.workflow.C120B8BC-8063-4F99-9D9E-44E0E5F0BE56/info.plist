@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>ago.alfred-todo-to-orgmode</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>0CBAD592-FA38-441B-977C-7CF0489F909B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>ED716DC1-030F-4216-875E-A795905D6B18</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>2C99F6F1-EF16-4CF1-9762-5D05A1FFAA4D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0CBAD592-FA38-441B-977C-7CF0489F909B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>485E7E6A-E909-4D74-8D9F-E29D8FADA11E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C5183A73-107C-4DBC-AAB3-46A499E43C1D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>BDE1908D-A596-4E64-8EC9-E0B45830589C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>13734DD2-23C2-489A-9D4B-8638EFF5CEFB</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>C5183A73-107C-4DBC-AAB3-46A499E43C1D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B3B6F8E5-DFDD-4B0B-8DA7-F4BF6D9FB2BD</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>CE3708AA-1D2C-4DA9-8AE8-7AB93F64FC30</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BDE1908D-A596-4E64-8EC9-E0B45830589C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Alexander Gogl</string>
+	<key>description</key>
+	<string>Create orgmode todos or headlines from todo and note strings.</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>org-mode-capture</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>TODO</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>ED716DC1-030F-4216-875E-A795905D6B18</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>import os
+from orgmode_entry import OrgmodeEntry
+
+entry = """{query}"""
+org = OrgmodeEntry()
+
+# Entries are added to the following orgmode file (use an absolute path):
+org.inbox_file = '/Users/xiankuncheng/org/i.org'
+
+org.delimiter = os.environ['delimiter']  # tag to separate the head from the body of the entry
+org.heading_suffix = "\n* "  # depth of entry
+
+org.use_priority_tags = True  # use priority tags: #b =&gt; [#B]
+org.priority_tag = '#'  # tag that marks a priority value
+
+org.add_creation_date = True  # add a creation date
+
+org.replace_absolute_dates = True  # convert absolute dates like 01.10 15:00 into orgmode dates =&gt; &lt;2016-10-01 Sun 15:00&gt;
+org.replace_relative_dates = True  # convert relative dates like monday or tomorrow into orgmode dates
+
+# Convert a schedule pattern into an org scheduled date
+org.convert_scheduled = True  # convert sche
+org.scheduled_pattern = "S: "
+
+# Convert a deadline pattern into an org deadline
+org.convert_deadlines = True
+org.deadline_pattern = "DL: "
+
+org.smart_line_break = True  # convert a pattern into a linebreak
+org.line_break_pattern = "\s\s"  # two spaces
+
+# Cleanup spaces (double, leading, and trailing)
+org.cleanup_spaces = True
+
+entry = 'TODO ' + entry
+
+message = org.add_entry(entry)
+
+print(message)</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>3</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>0CBAD592-FA38-441B-977C-7CF0489F909B</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>todo</string>
+				<key>subtext</key>
+				<string>Add a Todo to org's Inbox</string>
+				<key>text</key>
+				<string>Todo</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>2C99F6F1-EF16-4CF1-9762-5D05A1FFAA4D</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Note</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>13734DD2-23C2-489A-9D4B-8638EFF5CEFB</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>import os
+from orgmode_entry import OrgmodeEntry
+
+entry = """{query}"""
+org = OrgmodeEntry()
+
+# Entries are added to the following orgmode file (use an absolute path):
+org.inbox_file = '/Users/xiankuncheng/org/i.org'
+
+org.delimiter = os.environ['delimiter']  # tag to separate the head from the body of the entry
+org.heading_suffix = "\n* "  # depth of entry
+
+org.use_priority_tags = True  # use priority tags: #b =&gt; [#B]
+org.priority_tag = '#'  # tag that marks a priority value
+
+org.add_creation_date = True  # add a creation date
+
+org.replace_absolute_dates = True  # convert absolute dates like 01.10 15:00 into orgmode dates =&gt; &lt;2016-10-01 Sun 15:00&gt;
+org.replace_relative_dates = True  # convert relative dates like monday or tomorrow into orgmode dates
+
+# Convert a schedule pattern into an org scheduled date
+org.convert_scheduled = True  # convert sche
+org.scheduled_pattern = "S: "
+
+# Convert a deadline pattern into an org deadline
+org.convert_deadlines = True
+org.deadline_pattern = "DL: "
+
+org.smart_line_break = True  # convert a pattern into a linebreak
+org.line_break_pattern = "\s\s"  # two spaces
+
+# Cleanup spaces (double, leading, and trailing)
+org.cleanup_spaces = True
+
+message = org.add_entry(entry)
+
+print(message)</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>3</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>BDE1908D-A596-4E64-8EC9-E0B45830589C</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>note</string>
+				<key>subtext</key>
+				<string>Add a Note to org's Inbox</string>
+				<key>text</key>
+				<string>Note</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>CE3708AA-1D2C-4DA9-8AE8-7AB93F64FC30</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Note</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>B3B6F8E5-DFDD-4B0B-8DA7-F4BF6D9FB2BD</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>import os
+from orgmode_entry import OrgmodeEntry
+
+entry = """{query}"""
+org = OrgmodeEntry()
+
+# Entries are added to the following orgmode file (use an absolute path):
+org.inbox_file = '/Users/xiankuncheng/org/i.org'
+
+org.delimiter = os.environ['delimiter']  # tag to separate the head from the body of the entry
+org.heading_suffix = "\n** "  # depth of entry
+
+org.use_priority_tags = True  # use priority tags: #b =&gt; [#B]
+org.priority_tag = '#'  # tag that marks a priority value
+
+org.add_creation_date = True  # add a creation date
+
+org.replace_absolute_dates = True  # convert absolute dates like 01.10 15:00 into orgmode dates =&gt; &lt;2016-10-01 Sun 15:00&gt;
+org.replace_relative_dates = True  # convert relative dates like monday or tomorrow into orgmode dates
+
+# Convert a schedule pattern into an org scheduled date
+org.convert_scheduled = True  # convert sche
+org.scheduled_pattern = "S: "
+
+# Convert a deadline pattern into an org deadline
+org.convert_deadlines = True
+org.deadline_pattern = "DL: "
+
+org.smart_line_break = True  # convert a pattern into a linebreak
+org.line_break_pattern = "\s\s"  # two spaces
+
+# Cleanup spaces (double, leading, and trailing)
+org.cleanup_spaces = True
+
+entry = 'TODO ' + entry
+message = org.add_entry(entry)
+
+print(message)</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>3</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C5183A73-107C-4DBC-AAB3-46A499E43C1D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>insp</string>
+				<key>subtext</key>
+				<string>Add an inspiration to the design research's inbox</string>
+				<key>text</key>
+				<string>Add inspiration</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>485E7E6A-E909-4D74-8D9F-E29D8FADA11E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>See https://github.com/alexandergogl/alfred-org-mode-workflow.</string>
+	<key>uidata</key>
+	<dict>
+		<key>0CBAD592-FA38-441B-977C-7CF0489F909B</key>
+		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
+			<key>ypos</key>
+			<real>40</real>
+		</dict>
+		<key>13734DD2-23C2-489A-9D4B-8638EFF5CEFB</key>
+		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>2C99F6F1-EF16-4CF1-9762-5D05A1FFAA4D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<real>60</real>
+		</dict>
+		<key>485E7E6A-E909-4D74-8D9F-E29D8FADA11E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>310</integer>
+			<key>ypos</key>
+			<integer>340</integer>
+		</dict>
+		<key>B3B6F8E5-DFDD-4B0B-8DA7-F4BF6D9FB2BD</key>
+		<dict>
+			<key>xpos</key>
+			<integer>710</integer>
+			<key>ypos</key>
+			<integer>290</integer>
+		</dict>
+		<key>BDE1908D-A596-4E64-8EC9-E0B45830589C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
+			<key>ypos</key>
+			<real>160</real>
+		</dict>
+		<key>C5183A73-107C-4DBC-AAB3-46A499E43C1D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>510</integer>
+			<key>ypos</key>
+			<integer>320</integer>
+		</dict>
+		<key>CE3708AA-1D2C-4DA9-8AE8-7AB93F64FC30</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<real>180</real>
+		</dict>
+		<key>ED716DC1-030F-4216-875E-A795905D6B18</key>
+		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<dict>
+		<key>delimiter</key>
+		<string>:: </string>
+		<key>inbox</key>
+		<string></string>
+		<key>inspirations</key>
+		<string></string>
+	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<string>inbox</string>
+		<string>inspirations</string>
+	</array>
+	<key>version</key>
+	<string>1.2.1</string>
+	<key>webaddress</key>
+	<string>http://issuu.com/alex.gogl</string>
+</dict>
+</plist>
