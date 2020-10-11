@@ -71,6 +71,7 @@ values."
      osx
      markdown
      helm
+     docker
      auto-completion
      better-defaults
      emacs-lisp
@@ -84,11 +85,11 @@ values."
                                  (concat org-root-path "i.org")
                                  (concat org-root-path "links.org"))
           org-capture-templates
-                '(("a" "Appointment" entry (file  (concat org-root-path "gcal.org") )
+          '(("a" "Appointment" entry (file  "~/Dropbox/org/gcal.org")
                    "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
-                  ("l" "Link" entry (file+headline (concat org-root-path "links.org") "Links")
+                  ("l" "Link" entry (file+headline "~/Dropbox/org/links.org" "Links")
                    "* %? %^L %^g \n%T" :prepend t)
-                  ("v" "Video idea" entry (file+headline (concat org-root-path "i.org") "Video ideas:")
+                  ("v" "Video idea" entry (file+headline "~/Dropbox/org/i.org" "Video ideas")
                    "* %?\n%T" :prepend t)
                   ("t" "To Do Item" entry (file+headline "~/Dropbox/org/i.org" "To Do")
                    "* TODO %?\n%u" :prepend t)
@@ -96,8 +97,7 @@ values."
                    "* %?\n%u" :prepend t)
                   )
 
-          org-refile-targets '((org-root-path :maxlevel . 3)
-                               ((concat org-root-path "personal") :maxlevel . 3))
+          org-refile-targets (quote ((org-agenda-files :maxlevel . 9)))
 
           org-enable-github-support t ;; GitHub flavored markdown
 
@@ -110,7 +110,13 @@ values."
           org-journal-file-type 'weekly
           org-journal-carryover-items "TODO")
 
+     (deft :variables
+       deft-recursive t
+       deft-directory "~/Dropbox/org"
+       deft-extensions '("org"))
+
      (org-roam :variables
+               org-roam-db-location "~/org-roam.db"
                org-roam-capture-templates
                      '(
                        ("d" "default" plain (function org-roam-capture--get-point)
@@ -123,6 +129,9 @@ values."
      version-control
 
      mu4e
+
+     (treemacs :variables
+               treemacs-use-scope-type 'Perspectives)
 
      (chinese :variables
               chinese-default-input-method 'sougou-pinyin
@@ -209,14 +218,18 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(doom-one
+                         doom-spacegrey
+                         doom-vibrant
+                         solarized-dark
+                         spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 18
+                               :size 22
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -328,7 +341,7 @@ values."
    ;; spaceline themes: spacemacs, all-the-icons, custom
    ;; a powerline theme: vim-powerline
    ;; no theme at all: vanilla
-   dotspacemacs-mode-line-theme `all-the-icons
+   dotspacemacs-mode-line-theme `spacemacs
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
    dotspacemacs-mode-line-unicode-symbols t
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
@@ -465,9 +478,8 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(evil-want-Y-yank-to-eol nil)
- '(org-agenda-files '("~/Dropbox/org/gcal.org" "~/Dropbox/org/i.org"))
  '(package-selected-packages
-   '(dap-mode posframe bui oshelorg-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot highlight smartparens iedit anzu evil goto-chg undo-tree dash s bind-map packed helm avy helm-core async popup xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help tern smeargle orgit magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet auto-dictionary ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+   '(restclient-helm helm-xref helm-spotify-plus multi helm-purpose helm-org-rifle helm-org helm-mu helm-lsp helm-ls-git helm-git-grep helm-css-scss oshelorg-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot highlight smartparens iedit anzu evil goto-chg undo-tree dash s bind-map packed helm avy helm-core async popup xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help tern smeargle orgit magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet auto-dictionary ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
