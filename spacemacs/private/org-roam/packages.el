@@ -40,7 +40,7 @@
      (after-init . org-roam--build-cache-async) ;; optional!
      )
     :custom
-    (org-roam-directory "~/org/roam/")
+    (org-roam-directory "~/Dropbox/org/roam/")
     :init
     (progn
       (spacemacs/declare-prefix "ar" "org-roam")
