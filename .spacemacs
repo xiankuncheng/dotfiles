@@ -585,6 +585,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
+  (require 'personal-secrets)
   )
 
 (defun dotspacemacs/user-config ()
@@ -598,9 +599,7 @@ you should place your code here."
   (use-package org-gcal
     :ensure t
     :config
-    (setq org-gcal-client-id "235815153461-6ol8827pq76blg049gqjq1is5uharj6f.apps.googleusercontent.com"
-          org-gcal-client-secret "wI5vUpTLqQshHyI5Fp78DKP-"
-          org-gcal-file-alist '(("xiankuncheng@gmail.com" .  "~/Dropbox/org/gcal.org"))))
+    (setq org-gcal-file-alist '(("xiankuncheng@gmail.com" .  "~/Dropbox/org/gcal.org"))))
 
   (setq org-roam-server-host "127.0.0.1"
         org-roam-server-port 9090
