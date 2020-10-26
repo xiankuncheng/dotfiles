@@ -49,6 +49,7 @@
         "art" 'org-roam-dailies-today
         "arf" 'org-roam-find-file
         "ari" 'org-roam-insert
+        "arc" 'org-roam-capture
         "arg" 'org-roam-show-graph)
       (spacemacs/declare-prefix-for-mode 'org-mode "mr" "org-roam")
       (spacemacs/set-leader-keys-for-major-mode 'org-mode
@@ -56,6 +57,7 @@
         "rt" 'org-roam-dailies-today
         "rf" 'org-roam-find-file
         "ri" 'org-roam-insert
+        "rc" 'org-roam-capture
         "rg" 'org-roam-show-graph)
       )))
 

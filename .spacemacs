@@ -31,8 +31,9 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layer-path '()
 
    ;; List of configuration layers to load.
-   dotspacemacs-configuration-layers '(csv
-                                       lua
+   dotspacemacs-configuration-layers '(
+     csv
+     lua
      yaml
      vimscript
      octave
