@@ -84,11 +84,27 @@ This function should only modify configuration layer settings."
      github
      (org :variables
           org-root-path "~/Dropbox/org/"
+
+          org-enable-github-support t ;; GitHub flavored markdown
+          org-enable-hugo-support t
+
+          org-enable-reveal-js-support t
+          org-re-reveal-root "/Users/xiankuncheng/workspace/reveal.js-3.8.0"
+
+          org-enable-org-journal-support t
+          org-journal-enable-agenda-integration t
+          org-journal-dir (concat org-root-path "journal")
+          org-journal-file-format "%Y-%m-%d.org"
+          org-journal-file-type 'weekly
+          org-journal-carryover-items "TODO"
+
           org-archive-location (concat org-root-path "archives/archive.org::* From %s")
 
           org-agenda-files (list (concat org-root-path "gcal.org")
                                  (concat org-root-path "i.org")
-                                 (concat org-root-path "links.org"))
+                                 (concat org-root-path "links.org")
+                                 org-journal-dir
+                                 )
           org-capture-templates
           '(("a" "Appointment" entry (file  "~/Dropbox/org/gcal.org")
                    "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
@@ -104,17 +120,7 @@ This function should only modify configuration layer settings."
 
           org-refile-targets (quote ((org-agenda-files :maxlevel . 9)))
 
-          org-enable-github-support t ;; GitHub flavored markdown
-          org-enable-hugo-support t
-
-          org-enable-reveal-js-support t
-          org-re-reveal-root "/Users/xiankuncheng/workspace/reveal.js-3.8.0"
-
-          org-enable-org-journal-support t
-          org-journal-dir (concat org-root-path "journal")
-          org-journal-file-format "%Y-%m-%d.org"
-          org-journal-file-type 'weekly
-          org-journal-carryover-items "TODO")
+          )
 
      (deft :variables
        deft-recursive t
