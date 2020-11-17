@@ -22,8 +22,9 @@ hs.grid.GRIDHEIGHT = 8
 local m_alt = {"alt"}
 local m_shift_cmd = {"shift", "cmd"}
 local m_shift_alt = {"shift", "alt"}
+local m_ctrl_cmd = {"ctrl", "cmd"}
 
-local m_switch_app = m_shift_alt
+local m_switch_app = m_ctrl_cmd
 local m_mod1 = m_shift_cmd
 local m_mod2 = m_shift_alt
 
@@ -306,82 +307,76 @@ end
 
 ---
 --  常用的窗口布局
-hs.fnutils.each({
-    {key = "`", layout = LAYOUTS.fullscreen},
-    {key = "1", layout = LAYOUTS.left},
-    {key = "2", layout = LAYOUTS.right},
-    {key = "3", layout = LAYOUTS.left_top},
-    {key = "4", layout = LAYOUTS.left_bottom},
-    {key = "5", layout = LAYOUTS.right_top},
-    {key = "6", layout = LAYOUTS.right_bottom},
-    {key = "0", layout = LAYOUTS.center},
-    {key = "8", layout = LAYOUTS.top},
-    {key = "9", layout = LAYOUTS.bottom},
-}, function(meta)
-    hs.hotkey.bind(m_mod1, meta.key, set_windows_to_grid(meta.layout))
-end)
+-- hs.fnutils.each({
+--     {key = "`", layout = LAYOUTS.fullscreen},
+--     {key = "1", layout = LAYOUTS.left},
+--     {key = "2", layout = LAYOUTS.right},
+--     {key = "3", layout = LAYOUTS.left_top},
+--     {key = "4", layout = LAYOUTS.left_bottom},
+--     {key = "5", layout = LAYOUTS.right_top},
+--     {key = "6", layout = LAYOUTS.right_bottom},
+--     {key = "0", layout = LAYOUTS.center},
+--     {key = "8", layout = LAYOUTS.top},
+--     {key = "9", layout = LAYOUTS.bottom},
+-- }, function(meta)
+--     hs.hotkey.bind(m_mod1, meta.key, set_windows_to_grid(meta.layout))
+-- end)
 
 ---
 --  移动窗口
 --  y   k   u
 --  h       l
 --  b   j   n
-hs.fnutils.each({
-    {key = "h", w = -20, h = 0},
-    {key = "j", w = 0, h = 20},
-    {key = "k", w = 0, h = -20},
-    {key = "l", w = 20, h = 0},
-}, function(meta)
-    hs.hotkey.bind(m_mod1, meta.key, move_window(meta.w, meta.h),
-        nil, move_window(meta.w, meta.h))
-end)
+-- hs.fnutils.each({
+--     {key = "h", w = -20, h = 0},
+--     {key = "j", w = 0, h = 20},
+--     {key = "k", w = 0, h = -20},
+--     {key = "l", w = 20, h = 0},
+-- }, function(meta)
+--     hs.hotkey.bind(m_mod1, meta.key, move_window(meta.w, meta.h),
+--         nil, move_window(meta.w, meta.h))
+-- end)
 
 ---
 --  移动到屏幕
-hs.hotkey.bind(m_mod2, "n", hs.grid.pushWindowNextScreen)
-hs.hotkey.bind(m_mod2, "p", hs.grid.pushWindowPrevScreen)
+-- hs.hotkey.bind(m_mod2, "n", hs.grid.pushWindowNextScreen)
+-- hs.hotkey.bind(m_mod2, "p", hs.grid.pushWindowPrevScreen)
 
 ---
 --  修改窗口大小
-hs.fnutils.each({
-    {key = "h", w = -20, h = 0},
-    {key = "j", w = 0, h = 20},
-    {key = "k", w = 0, h = -20},
-    {key = "l", w = 20, h = 0},
-}, function(meta)
-    hs.hotkey.bind(m_mod2, meta.key, resize_window(meta.w, meta.h),
-        nil, resize_window(meta.w, meta.h))
-end)
+-- hs.fnutils.each({
+--     {key = "h", w = -20, h = 0},
+--     {key = "j", w = 0, h = 20},
+--     {key = "k", w = 0, h = -20},
+--     {key = "l", w = 20, h = 0},
+-- }, function(meta)
+--     hs.hotkey.bind(m_mod2, meta.key, resize_window(meta.w, meta.h),
+--         nil, resize_window(meta.w, meta.h))
+-- end)
 
----
---  重新加载配置文件
-hs.hotkey.bind(m_mod2, "r", function()
-    hs.reload()
-    hs.alert.show("Config loaded")
-end)
 
 ---
 --  平铺并选择App
-hs.hotkey.bind(m_mod2, "e", hs.hints.windowHints)
+-- hs.hotkey.bind(m_mod2, "e", hs.hints.windowHints)
 
 ---
 --  切换布局
-hs.hotkey.bind(m_mod2, "1", change_layout(APP_LAYOUT[1]))
+-- hs.hotkey.bind(m_mod2, "1", change_layout(APP_LAYOUT[1]))
 
 ---
 --  加载/切换到指定App
 hs.fnutils.each({
-    {key = "b", app = APPNAMES.Xcode},
-    {key = "s", app = APPNAMES.IM},
+    -- {key = "b", app = APPNAMES.Xcode},
+    -- {key = "s", app = APPNAMES.IM},
     {key = "c", app = APPNAMES.Browser},
-    {key = "f", app = APPNAMES.FileManager},
+    -- {key = "f", app = APPNAMES.FileManager},
     {key = "t", app = APPNAMES.TermApp},
-    {key = "m", app = APPNAMES.Mail},
+    -- {key = "m", app = APPNAMES.Mail},
     {key = "e", app = APPNAMES.Emacs},
     {key = "u", app = APPNAMES.Doc},
     {key = "y", app = APPNAMES.Music},
-    {key = "w", app = APPNAMES.WeChat},
-    {key = "p", app = APPNAMES.Preview},
+    -- {key = "w", app = APPNAMES.WeChat},
+    -- {key = "p", app = APPNAMES.Preview},
 }, function(meta)
     hs.hotkey.bind(m_switch_app, meta.key, launch_or_focus_window(meta.app))
 end)
@@ -391,12 +386,18 @@ end)
 local hyper      = {'ctrl', 'cmd', 'alt'}
 
 -- Move Mouse to center of next Monitor
-hs.hotkey.bind(hyper, '1', function()
-    local screen = hs.mouse.getCurrentScreen()
-    local nextScreen = screen:next()
-    local rect = nextScreen:fullFrame()
-    local center = hs.geometry.rectMidPoint(rect)
+-- hs.hotkey.bind(hyper, '1', function()
+--     local screen = hs.mouse.getCurrentScreen()
+--     local nextScreen = screen:next()
+--     local rect = nextScreen:fullFrame()
+--     local center = hs.geometry.rectMidPoint(rect)
 
-    hs.mouse.setAbsolutePosition(center)
+--     hs.mouse.setAbsolutePosition(center)
+-- end)
+
+---
+--  重新加载配置文件
+hs.hotkey.bind(hyper, "r", function()
+                 hs.reload()
+                 hs.alert.show("Config loaded")
 end)
-
