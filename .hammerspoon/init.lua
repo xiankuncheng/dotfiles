@@ -367,7 +367,7 @@ end
 --  加载/切换到指定App
 hs.fnutils.each({
     -- {key = "b", app = APPNAMES.Xcode},
-    -- {key = "s", app = APPNAMES.IM},
+    {key = "s", app = APPNAMES.IM},
     {key = "c", app = APPNAMES.Browser},
     -- {key = "f", app = APPNAMES.FileManager},
     {key = "t", app = APPNAMES.TermApp},

@@ -129,21 +129,22 @@ This function should only modify configuration layer settings."
 
           org-enable-jira-support t
           jiralib-url "https://pushpay.atlassian.net:443"
+
+          org-enable-roam-support t
+          org-roam-directory "~/Dropbox/org/roam/"
+          org-roam-db-location "~/org-roam.db"
+          org-roam-capture-templates
+          '(
+            ("d" "default" plain (function org-roam-capture--get-point)
+             "%?"
+             :file-name "%<%Y%m%d%H%M%S>-${slug}"
+             :head "#+title: ${title}\n#+roam_alias:\n#+roam_tags:\n\n"))
           )
 
      (deft :variables
        deft-recursive t
        deft-directory "~/Dropbox/org"
        deft-extensions '("org"))
-
-     (org-roam :variables
-               org-roam-db-location "~/org-roam.db"
-               org-roam-capture-templates
-                     '(
-                       ("d" "default" plain (function org-roam-capture--get-point)
-                        "%?"
-                        :file-name "%<%Y%m%d%H%M%S>-${slug}"
-                        :head "#+title: ${title}\n#+roam_alias:\n#+roam_tags:\n\n")))
 
      spell-checking  ;; brew install ispell
      syntax-checking
