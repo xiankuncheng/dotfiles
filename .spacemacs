@@ -169,7 +169,6 @@ This function should only modify configuration layer settings."
                                       org-gcal
                                       org-roam-server
                                       ox-slack
-                                      exwm
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
