@@ -35,6 +35,7 @@ This function should only modify configuration layer settings."
      kotlin
      swift
      haskell
+     command-log
      csv
      lua
      yaml
