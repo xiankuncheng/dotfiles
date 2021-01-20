@@ -43,7 +43,7 @@ local APPNAMES = {
 	AS = "Android Studio",
 	WeChat = "WeChat",
 	Preview = "Preview",
-	Music = "Spotify",
+	Music = "Music", -- "Spotify",
 	RNDebuger = "React Native Debugger",
 	Sagas = "Reactotron",
 	Simulator = "Simulator"
@@ -119,11 +119,12 @@ local APP_LAYOUT = {
             [APPNAMES.Preview] = {2, LAYOUTS.fullscreen},
         },
         three_monitor_work = {
-            [APPNAMES.RNDebuger] = {SCREENS.WORK.LEFT, LAYOUTS.left},
-            [APPNAMES.Sagas] = {SCREENS.WORK.LEFT, LAYOUTS.right},
-            [APPNAMES.Simulator] = {SCREENS.WORK.LEFT, LAYOUTS.right},
-            [APPNAMES.Term] = {SCREENS.WORK.MIDDLE, LAYOUTS.fullscreen},
-            [APPNAMES.Browser] = {SCREENS.WORK.MIDDLE, LAYOUTS.fullscreen},
+            -- 左显示器 iTerm2 | Chrome
+            [APPNAMES.Term] = {SCREENS.WORK.LEFT, LAYOUTS.left},
+            [APPNAMES.Browser] = {SCREENS.WORK.LEFT, LAYOUTS.right},
+            -- 中显示器 Emacs
+            [APPNAMES.TextEditor] = {SCREENS.WORK.MIDDLE, LAYOUTS.fullscreen},
+            -- 右显示器 Slack
             [APPNAMES.IM] = {SCREENS.WORK.RIGHT, LAYOUTS.fullscreen},
         },
         three_monitor_home = {
@@ -361,7 +362,7 @@ end
 
 ---
 --  切换布局
--- hs.hotkey.bind(m_mod2, "1", change_layout(APP_LAYOUT[1]))
+hs.hotkey.bind(m_mod2, "1", change_layout(APP_LAYOUT[1]))
 
 ---
 --  加载/切换到指定App
