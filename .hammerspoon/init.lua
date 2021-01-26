@@ -57,8 +57,8 @@ local SCREENS = {
     RIGHT = 1,
   },
   WORK = {
-    LEFT = 3,
-    MIDDLE = 2,
+    LEFT = 2,
+    MIDDLE = 3,
     RIGHT = 1,
   }
 }
@@ -261,12 +261,16 @@ function change_layout(layout)
         elseif screen_count == 2 then
             layout_meta = layout.two_monitor
         elseif screen_count == 3 then
-            if screens[2]:name() == "DELL U2715H" then
+          for i,v in ipairs(screens) do
+            if v:getUUID() == "000010AC-0000-D065-3035-564C00000000" then
+              print("Detected work environment.")
               layout_meta = layout.three_monitor_work
-            elseif screens[2]:name() == "DELL U2718Q" then
+            elseif v:name() == "DELL U2718Q" then
+              print("Detected home environment.")
               layout_meta = layout.three_monitor_home
             end
-        else 
+          end
+        else
             return
         end
 
