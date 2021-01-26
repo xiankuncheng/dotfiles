@@ -55,6 +55,9 @@ This function should only modify configuration layer settings."
      emoji
      html
      (typescript :variables
+                 typescript-backend 'lsp
+                 typescript-linter 'eslint
+                 typescript-fmt-tool 'prettier
                  typescript-fmt-on-save t)
      ;; npm install -g vmd
      (markdown :variables markdown-live-preview-engine 'vmd)
@@ -148,7 +151,7 @@ This function should only modify configuration layer settings."
        deft-directory "~/Dropbox/org"
        deft-extensions '("org"))
 
-     spell-checking  ;; brew install ispell
+     ;; spell-checking  ;; brew install ispell ;; Seems have incompatible with auto-completion
      syntax-checking
      version-control
 
