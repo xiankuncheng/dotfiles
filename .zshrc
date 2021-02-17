@@ -171,7 +171,7 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 
-export DOOM=$HOME/.emacs.d/bin/doom
+export DOOM=$HOME/doom-emacs/bin/doom
 export PATH=$PATH:$DOOM
 
 # Add podevn to PATH to manage multiple versions of CocoaPods

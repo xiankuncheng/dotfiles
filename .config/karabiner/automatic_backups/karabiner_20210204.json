@@ -78,18 +78,10 @@
                         },
                         {
                             "from": {
-                                "key_code": "non_us_backslash"
-                            },
-                            "to": {
-                                "key_code": "grave_accent_and_tilde"
-                            }
-                        },
-                        {
-                            "from": {
                                 "key_code": "home"
                             },
                             "to": {
-                                "key_code": "non_us_backslash"
+                                "key_code": "grave_accent_and_tilde"
                             }
                         }
                     ]

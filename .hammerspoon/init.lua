@@ -12,6 +12,9 @@
 --  @author     Dongliang Ma <mdl2009@vip.qq.com>
 --  @license    MIT
 
+-- Enable Spotlight support to check alternate app names
+hs.application.enableSpotlightForNameSearches(true)
+
 -- 设置Grid 12x8(水平x竖直)
 hs.grid.MARGINX = 0
 hs.grid.MARGINY = 0
@@ -53,13 +56,13 @@ local APPNAMES = {
 local SCREENS = {
   HOME = {
     LEFT = 3,
-    MIDDLE = 2,
-    RIGHT = 1,
+    MIDDLE = 1,
+    RIGHT = 2,
   },
   WORK = {
     LEFT = 2,
-    MIDDLE = 3,
-    RIGHT = 1,
+    MIDDLE = 1,
+    RIGHT = 3,
   }
 }
 
@@ -128,10 +131,13 @@ local APP_LAYOUT = {
             [APPNAMES.IM] = {SCREENS.WORK.RIGHT, LAYOUTS.fullscreen},
         },
         three_monitor_home = {
-            [APPNAMES.Music] = {SCREENS.HOME.LEFT, LAYOUTS.left},
-            [APPNAMES.Browser] = {SCREENS.HOME.LEFT, LAYOUTS.right},
-            [APPNAMES.Term] = {SCREENS.HOME.MIDDLE, LAYOUTS.left},
-            [APPNAMES.IM] = {SCREENS.HOME.MIDDLE, LAYOUTS.right},
+          -- 左显示器 iTerm2 | Chrome
+          [APPNAMES.Term] = {SCREENS.HOME.LEFT, LAYOUTS.left},
+          [APPNAMES.Browser] = {SCREENS.HOME.LEFT, LAYOUTS.right},
+          -- 中显示器 Slack
+          [APPNAMES.IM] = {SCREENS.HOME.MIDDLE, LAYOUTS.fullscreen},
+          -- 右显示器 Emacs
+          [APPNAMES.TextEditor] = {SCREENS.HOME.RIGHT, LAYOUTS.fullscreen},
         }
     }
 }
@@ -261,13 +267,16 @@ function change_layout(layout)
         elseif screen_count == 2 then
             layout_meta = layout.two_monitor
         elseif screen_count == 3 then
+          layout_meta = layout.three_monitor_home
           for i,v in ipairs(screens) do
-            if v:getUUID() == "000010AC-0000-D065-3035-564C00000000" then
+            if v:getUUID() == "000010AC-0000-D065-3035-564C00000000" or v:name() == 'DELL U2715H' then
               print("Detected work environment.")
               layout_meta = layout.three_monitor_work
+              break
             elseif v:name() == "DELL U2718Q" then
               print("Detected home environment.")
               layout_meta = layout.three_monitor_home
+              break
             end
           end
         else

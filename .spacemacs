@@ -55,15 +55,20 @@ This function should only modify configuration layer settings."
      emoji
      html
      (typescript :variables
-                 typescript-backend 'lsp
+                 typescript-backend 'tide
+                 tide-tsserver-executable "node_modules/typescript/bin/tsserver"
+                 tide-server-max-response-length 1024000
+                 tide-project-errors t
                  typescript-linter 'eslint
                  typescript-fmt-tool 'prettier
                  typescript-fmt-on-save t)
      ;; npm install -g vmd
      (markdown :variables markdown-live-preview-engine 'vmd)
+     ;; npm install -g import-js
      import-js
+     ;; npm install -g typescript-language-server typescript javascript-typescript-langserver
      (lsp :variables
-          ;; lsp-eslint-enable t
+          lsp-eslint-enable t
           lsp-enable-file-watchers nil
       )
      (javascript :variables
@@ -85,18 +90,24 @@ This function should only modify configuration layer settings."
             shell-default-height 30
             shell-default-position 'bottom)
      osx
-     ;; helm
-     ivy
+     (ivy :variables
+          ivy-enable-advanced-buffer-information nil
+          )
      docker
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-idle-delay 0.2
+                      )
      better-defaults
      emacs-lisp
-     git
+     (git :variables
+          evil-magit-revert t)
      github
 
      (org :variables
           org-root-path "~/Dropbox/org/"
-          org-ellipsis " ▾"
+          ;; org-ellipsis " ▾"
           org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
             (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)"))
 
@@ -112,6 +123,9 @@ This function should only modify configuration layer settings."
           org-journal-file-format "%Y-%m-%d.org"
           org-journal-file-type 'weekly
           org-journal-carryover-items "TODO"
+
+          org-superstar-headline-bullets-list '("◉" "○" "✸" "✿")
+          org-hide-leading-stars t
 
           org-archive-location (concat org-root-path "archives/archive.org::* From %s")
 
@@ -158,7 +172,8 @@ This function should only modify configuration layer settings."
      mu4e
 
      (treemacs :variables
-               treemacs-use-scope-type 'Perspectives)
+               treemacs-use-scope-type 'Perspectives
+               treemacs-use-all-the-icons-theme t)
 
      (chinese :variables
               chinese-default-input-method 'sougou-pinyin
@@ -173,6 +188,7 @@ This function should only modify configuration layer settings."
                                       cnfonts
                                       org-gcal
                                       org-roam-server
+                                      org-tree-slide
                                       ox-slack
                                       )
    ;; A list of packages that cannot be updated.
@@ -636,7 +652,7 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  (setq org-superstar-headline-bullets-list '("◉" "○" "●" "○" "●" "○" "●"))
+
   (use-package org-gcal
     :ensure t
     :config
@@ -669,24 +685,33 @@ you should place your code here."
      :prefix lsp-keymap-prefix
      "d" '(dap-hydra t :wk "debugger")))
 
-)
-;; Workaround for a couple of key-bindings in vterm-mode conflicts with evil-mode keybindings
-(defun bb/setup-term-mode ()
-  (evil-local-set-key 'insert (kbd "C-r") 'bb/send-C-r)
-  (evil-local-set-key 'insert (kbd "C-c") 'bb/send-C-c)
-  (evil-local-set-key 'insert (kbd "f") 'bb/send-f)
-  )
-(defun bb/send-f ()
-  (interactive)
-  (term-send-raw-string "f"))
-(defun bb/send-C-c ()
-  (interactive)
-  (term-send-raw-string "\C-c"))
-(defun bb/send-C-r ()
-  (interactive)
-  (term-send-raw-string "\C-r"))
-(add-hook 'vterm-mode-hook 'bb/setup-term-mode)
+  (use-package org-tree-slide
+    :custom
+    (org-image-actual-width nil))
 
+  ;; Workaround for a couple of key-bindings in vterm-mode conflicts with evil-mode keybindings
+  (defun bb/setup-term-mode ()
+    (evil-local-set-key 'insert (kbd "C-r") 'bb/send-C-r)
+    (evil-local-set-key 'insert (kbd "C-c") 'bb/send-C-c)
+    (evil-local-set-key 'insert (kbd "f") 'bb/send-f)
+    )
+  (defun bb/send-f ()
+    (interactive)
+    (term-send-raw-string "f"))
+  (defun bb/send-C-c ()
+    (interactive)
+    (term-send-raw-string "\C-c"))
+  (defun bb/send-C-r ()
+    (interactive)
+    (term-send-raw-string "\C-r"))
+  (add-hook 'vterm-mode-hook 'bb/setup-term-mode)
+
+  ;; Teach flycheck that syntax-checking wip merge buffers is not a good idea
+  (defun ad-flycheck--maybe-inhibit-flycheck (result)
+    (unless (equal (buffer-name) "*ediff-merge*")
+      result))
+  (advice-add #'flycheck-may-enable-mode :filter-return #'ad-flycheck--maybe-inhibit-flycheck)
+)
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
@@ -758,9 +783,9 @@ This function is called at the very end of Spacemacs initialization."
  '(nrepl-message-colors
    '("#dc322f" "#cb4b16" "#b58900" "#5b7300" "#b3c34d" "#0061a8" "#2aa198" "#d33682" "#6c71c4"))
  '(org-agenda-files
-   '("~/Dropbox/org/gcal.org" "~/Dropbox/org/i.org" "~/Dropbox/org/links.org" "/Users/xiankuncheng/Dropbox/org/journal/work-notes.org" "/Users/xiankuncheng/Dropbox/org/journal/2021-01-11.org"))
+   '("~/Dropbox/org/gcal.org" "~/Dropbox/org/i.org" "~/Dropbox/org/links.org" "/Users/xiankuncheng/Dropbox/org/journal/work-notes.org" "/Users/xiankuncheng/Dropbox/org/journal/2021-02-01.org"))
  '(package-selected-packages
-   '(oshelorg-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot highlight smartparens iedit anzu evil goto-chg undo-tree dash s bind-map packed helm avy helm-core async popup xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help tern smeargle orgit magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet auto-dictionary ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))
+   '(doom-modeline shrink-path oshelorg-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot highlight smartparens iedit anzu evil goto-chg undo-tree dash s bind-map packed helm avy helm-core async popup xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help tern smeargle orgit magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet auto-dictionary ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))

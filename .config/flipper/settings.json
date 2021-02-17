@@ -19,9 +19,9 @@
       "openDevMenu": "Alt+Shift+D"
     }
   },
-  "disableSandy": false,
-  "darkMode": true,
-  "showWelcomeAtStartup": true,
+  "darkMode": false,
+  "showWelcomeAtStartup": false,
+  "disableSandy": true,
   "_persist": {
     "version": -1,
     "rehydrated": true
