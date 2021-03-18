@@ -10,7 +10,7 @@ ln -s $CURRENT_FOLDER/.hammerspoon ~/
 # iTerm
 ln -s $CURRENT_FOLDER/iTerm/com.googlecode.iterm2.plist ~/Library/Preferences
 # Amethyst
-ln -s $CURRENT_FOLDER/iTerm/com.amethyst.Amethyst.plist ~/Library/Preferences
+ln -s $CURRENT_FOLDER/Amethyst/com.amethyst.Amethyst.plist ~/Library/Preferences
 # zshrc
 ln -s $CURRENT_FOLDER/.zshrc ~/
 # spacemacs personal config
