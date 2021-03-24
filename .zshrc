@@ -182,6 +182,9 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 source $ZSH/oh-my-zsh.sh
 
+# tz time zone customize
+export TZ_LIST="Pacific/Auckland;New Zealand Office,Asia/Shanghai;China,Etc/UTC,Etc/GMT"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
