@@ -35,10 +35,13 @@ This function should only modify configuration layer settings."
      ruby
      kotlin
      swift
-     haskell
      command-log
      csv
      lua
+     ;; brew install shellcheck
+     ;; pip install bashate
+     ;; npm install -g bash-language-server
+     (shell-scripts :variables shell-script-backend 'lsp)
      yaml
      vimscript
      octave
@@ -107,7 +110,6 @@ This function should only modify configuration layer settings."
 
      (org :variables
           org-root-path "~/Dropbox/org/"
-          ;; org-ellipsis " ▾"
           org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
             (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)"))
 
@@ -169,7 +171,7 @@ This function should only modify configuration layer settings."
      syntax-checking
      version-control
 
-     mu4e
+     ;; mu4e
 
      (treemacs :variables
                treemacs-use-scope-type 'Perspectives
@@ -187,11 +189,12 @@ This function should only modify configuration layer settings."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
                                       cnfonts
-                                      org-gcal
+                                      ;; org-gcal
                                       org-roam-server
                                       org-tree-slide
                                       ox-slack
-                                      (lsp-tailwindcss)
+                                      lsp-tailwindcss
+                                      format-all
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -657,10 +660,10 @@ you should place your code here."
 
   ;;evil-magit-revert
 
-  (use-package org-gcal
-    :ensure t
-    :config
-    (setq org-gcal-file-alist '(("xiankuncheng@gmail.com" .  "~/Dropbox/org/gcal.org"))))
+  ;; (use-package org-gcal
+  ;;   :ensure t
+  ;;   :config
+  ;;   (setq org-gcal-file-alist '(("xiankuncheng@gmail.com" .  "~/Dropbox/org/gcal.org"))))
 
   (setq org-roam-server-host "127.0.0.1"
         org-roam-server-port 9090
@@ -709,6 +712,10 @@ you should place your code here."
     (interactive)
     (term-send-raw-string "\C-r"))
   (add-hook 'vterm-mode-hook 'bb/setup-term-mode)
+
+  ;; Shell format
+  (use-package format-all)
+  (ass-hook 'prog-mode-hook 'format-all-mode)
 
   ;; Teach flycheck that syntax-checking wip merge buffers is not a good idea
   (defun ad-flycheck--maybe-inhibit-flycheck (result)
@@ -789,7 +796,7 @@ This function is called at the very end of Spacemacs initialization."
  '(org-agenda-files
    '("~/Dropbox/org/gcal.org" "~/Dropbox/org/i.org" "~/Dropbox/org/links.org" "/Users/xiankuncheng/Dropbox/org/journal/work-notes.org" "/Users/xiankuncheng/Dropbox/org/journal/2021-02-01.org"))
  '(package-selected-packages
-   '(lsp-tailwindcss oshelorg-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot highlight smartparens iedit anzu evil goto-chg undo-tree dash s bind-map packed helm avy helm-core async popup xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help tern smeargle orgit magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet auto-dictionary ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))
+   '(format-all lsp-tailwindcss oshelorg-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot highlight smartparens iedit anzu evil goto-chg undo-tree dash s bind-map packed helm avy helm-core async popup xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help tern smeargle orgit magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet auto-dictionary ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
