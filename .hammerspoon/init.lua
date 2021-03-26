@@ -276,7 +276,8 @@ function change_layout(layout)
             elseif v:name() == "DELL U2718Q" then
               print("Detected home environment.")
               layout_meta = layout.three_monitor_home
-              break
+            else
+              layout_meta = layout.three_monitor_home
             end
           end
         else
