@@ -49,7 +49,8 @@ local APPNAMES = {
 	Music = "Music", -- "Spotify",
 	RNDebuger = "React Native Debugger",
 	Sagas = "Reactotron",
-	Simulator = "Simulator"
+	Simulator = "Simulator",
+  Note = "Notion"
 }
 
 -- 显示器
@@ -132,12 +133,13 @@ local APP_LAYOUT = {
         },
         three_monitor_home = {
           -- 左显示器 iTerm2 | Chrome
-          [APPNAMES.Term] = {SCREENS.HOME.LEFT, LAYOUTS.left},
-          [APPNAMES.Browser] = {SCREENS.HOME.LEFT, LAYOUTS.right},
-          -- 中显示器 Slack
-          [APPNAMES.IM] = {SCREENS.HOME.MIDDLE, LAYOUTS.fullscreen},
-          -- 右显示器 Emacs
-          [APPNAMES.TextEditor] = {SCREENS.HOME.RIGHT, LAYOUTS.fullscreen},
+          [APPNAMES.Term] = {SCREENS.WORK.LEFT, LAYOUTS.left},
+          [APPNAMES.Browser] = {SCREENS.WORK.LEFT, LAYOUTS.right},
+          -- 中显示器 Emacs
+          [APPNAMES.TextEditor] = {SCREENS.WORK.MIDDLE, LAYOUTS.fullscreen},
+          -- 右显示器 Slack
+          [APPNAMES.IM] = {SCREENS.WORK.RIGHT, LAYOUTS.left},
+          [APPNAMES.Note] = {SCREENS.WORK.RIGHT, LAYOUTS.right},
         }
     }
 }
