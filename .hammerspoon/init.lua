@@ -56,9 +56,9 @@ local APPNAMES = {
 -- 显示器
 local SCREENS = {
   HOME = {
-    LEFT = 3,
-    MIDDLE = 1,
-    RIGHT = 2,
+    LEFT = 1,
+    MIDDLE = 2,
+    RIGHT = 3,
   },
   WORK = {
     LEFT = 2,
@@ -133,13 +133,12 @@ local APP_LAYOUT = {
         },
         three_monitor_home = {
           -- 左显示器 iTerm2 | Chrome
-          [APPNAMES.Term] = {SCREENS.WORK.LEFT, LAYOUTS.left},
-          [APPNAMES.Browser] = {SCREENS.WORK.LEFT, LAYOUTS.right},
+          [APPNAMES.Term] = {SCREENS.HOME.LEFT, LAYOUTS.left},
+          [APPNAMES.Browser] = {SCREENS.HOME.LEFT, LAYOUTS.right},
           -- 中显示器 Emacs
-          [APPNAMES.TextEditor] = {SCREENS.WORK.MIDDLE, LAYOUTS.fullscreen},
+          [APPNAMES.TextEditor] = {SCREENS.HOME.MIDDLE, LAYOUTS.fullscreen},
           -- 右显示器 Slack
-          [APPNAMES.IM] = {SCREENS.WORK.RIGHT, LAYOUTS.left},
-          [APPNAMES.Note] = {SCREENS.WORK.RIGHT, LAYOUTS.right},
+          [APPNAMES.IM] = {SCREENS.HOME.RIGHT, LAYOUTS.fullscreen},
         }
     }
 }
