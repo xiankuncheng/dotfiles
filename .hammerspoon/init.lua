@@ -114,22 +114,20 @@ local APP_LAYOUT = {
             [APPNAMES.Preview] = {1, LAYOUTS.fullscreen},
         },
         two_monitor = {
-            [APPNAMES.AS] = {1, LAYOUTS.center},
-            [APPNAMES.Browser] = {1, LAYOUTS.center_h},
-            [APPNAMES.Mail] = {1, LAYOUTS.left},
-            [APPNAMES.Doc] = {1, LAYOUTS.right},
-            [APPNAMES.FileManager] = {1, LAYOUTS.center_s},
-            [APPNAMES.WeChat] = {1, LAYOUTS.center_s},
-            [APPNAMES.Preview] = {2, LAYOUTS.fullscreen},
+          -- 上显示器 Emacs
+          [APPNAMES.TextEditor] = {SCREENS.HOME.LEFT, LAYOUTS.fullscreen},
+          -- 下显示器 Chrome | Slack
+          [APPNAMES.Browser] = {SCREENS.HOME.MIDDLE, LAYOUTS.left},
+          [APPNAMES.IM] = {SCREENS.HOME.MIDDLE, LAYOUTS.right},
         },
         three_monitor_work = {
-            -- 左显示器 iTerm2 | Chrome
-            [APPNAMES.Term] = {SCREENS.WORK.LEFT, LAYOUTS.left},
-            [APPNAMES.Browser] = {SCREENS.WORK.LEFT, LAYOUTS.right},
-            -- 中显示器 Emacs
-            [APPNAMES.TextEditor] = {SCREENS.WORK.MIDDLE, LAYOUTS.fullscreen},
-            -- 右显示器 Slack
-            [APPNAMES.IM] = {SCREENS.WORK.RIGHT, LAYOUTS.fullscreen},
+          -- 左显示器 iTerm2 | Chrome
+          [APPNAMES.Term] = {SCREENS.WORK.LEFT, LAYOUTS.left},
+          [APPNAMES.Browser] = {SCREENS.WORK.LEFT, LAYOUTS.right},
+          -- 中显示器 Emacs
+          [APPNAMES.TextEditor] = {SCREENS.WORK.MIDDLE, LAYOUTS.fullscreen},
+          -- 右显示器 Slack
+          [APPNAMES.IM] = {SCREENS.WORK.RIGHT, LAYOUTS.fullscreen},
         },
         three_monitor_home = {
           -- 左显示器 iTerm2 | Chrome
