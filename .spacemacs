@@ -200,6 +200,15 @@ This function should only modify configuration layer settings."
                                       ox-slack
                                       lsp-tailwindcss
                                       format-all
+                                      (evil-colemak-basics :location (recipe
+                                                                      :fetcher github
+                                                                      :repo "xiankuncheng/emacs-evil-colemak-basics")
+                                                           :after evil evil-snipe
+                                                           :init
+                                                           (setq evil-colemak-basics-char-jump-commands 'evil-snipe)
+                                                           (setq evil-colemak-basics-mod-dh 't)
+                                                           :config (global-evil-colemak-basics-mode)
+                                                           )
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -367,7 +376,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(doom :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -377,7 +386,7 @@ It should only modify the values of Spacemacs settings."
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 18
+                               :size 16
                                :weight normal
                                :width normal)
 
@@ -753,6 +762,8 @@ you should place your code here."
     :hook (org-mode . efs/org-mode-visual-fill))
 
   (use-package lsp-tailwindcss)
+
+  (global-evil-colemak-basics-mode)
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -785,6 +796,7 @@ This function is called at the very end of Spacemacs initialization."
  '(cua-normal-cursor-color "#839496")
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
+ '(evil-colemak-basics-mod-dh t)
  '(evil-want-Y-yank-to-eol nil)
  '(global-git-gutter+-mode t)
  '(helm-completion-style 'emacs)
@@ -825,9 +837,9 @@ This function is called at the very end of Spacemacs initialization."
  '(nrepl-message-colors
    '("#dc322f" "#cb4b16" "#b58900" "#5b7300" "#b3c34d" "#0061a8" "#2aa198" "#d33682" "#6c71c4"))
  '(org-agenda-files
-   '("~/Dropbox/org/gcal.org" "~/Dropbox/org/i.org" "~/Dropbox/org/links.org" "/Users/xiankuncheng/Dropbox/org/journal/work-notes.org" "/Users/XiankunCheng/Dropbox/org/journal/2021-04-05.org"))
+   '("~/Dropbox/org/gcal.org" "~/Dropbox/org/i.org" "~/Dropbox/org/links.org" "/Users/XiankunCheng/Dropbox/org/journal/work-notes.org" "/Users/XiankunCheng/Dropbox/org/journal/2021-04-12.org"))
  '(package-selected-packages
-   '(yasnippet-snippets yaml-mode web-mode vterm vmd-mode vimrc-mode unfill tide typescript-mode terminal-here tagedit swift-mode sqlup-mode sql-indent spotify slim-mode slack circe oauth2 websocket seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocopfmt rubocop rspec-mode robe rjsx-mode reveal-in-osx-finder rbenv rake pug-mode prettier-js pandoc-mode ox-pandoc ox-hugo overseer osx-trash osx-dictionary osx-clipboard orgit-forge org-rich-yank org-re-reveal org-projectile org-journal org-cliplink org-brain ob-restclient ob-http npm-mode nodejs-repl nameless mwim minitest lsp-ui lsp-origami origami lsp-ivy launchctl kotlin-mode keycast json-navigator hierarchy ivy-yasnippet insert-shebang import-js grizzl impatient-mode haml-mode grip-mode graphviz-dot-mode github-search github-clone gist gh marshal logito pcache flycheck-pos-tip pos-tip flycheck-package package-lint flycheck-kotlin flycheck-elsa flycheck-bashate flycheck fish-mode evil-org emr clang-format list-utils emojify emoji-cheat-sheet-plus emmet-mode dockerfile-mode docker tablist docker-tramp deft dap-mode lsp-treemacs bui dactyl-mode csv-mode counsel-spotify counsel-css confluence xml-rpc company-web web-completion-data company-terraform terraform-mode hcl-mode company-shell company-restclient restclient know-your-http-well company-lua lua-mode company-emoji command-log-mode chruby bundler inf-ruby browse-at-remote add-node-modules-path oshelorg-rojectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot highlight smartparens iedit anzu evil goto-chg undo-tree dash s bind-map packed helm avy helm-core async popup xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help tern smeargle orgit magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet auto-dictionary ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))
+   '(oshelorg-rojectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot highlight smartparens iedit anzu evil goto-chg undo-tree dash s bind-map packed helm avy helm-core async popup xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help tern smeargle orgit magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct evil-magit magit git-commit with-editor transient diff-hl company-statistics company auto-yasnippet auto-dictionary ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired f evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
