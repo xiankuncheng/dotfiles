@@ -21,6 +21,7 @@
   },
   "darkMode": false,
   "showWelcomeAtStartup": false,
+  "suppressPluginErrors": true,
   "disableSandy": true,
   "_persist": {
     "version": -1,
