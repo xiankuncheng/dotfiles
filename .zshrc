@@ -77,11 +77,12 @@ plugins=(
   zsh-syntax-highlighting
   zsh-completions
   zsh-autosuggestions
-  jira
-  zsh-z
   z
   git-open # git clone https://github.com/paulirish/git-open.git $ZSH_CUSTOM/plugins/git-open
 )
+
+# For zsh-autosuggustions not invisble on Solarized dark color theme.
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=60'
 
 autoload -U compinit && compinit
 
@@ -158,6 +159,9 @@ mktouch() {
     done
 }
 
+# Alias
+alias emuls="emulator -list-avds"
+
 # Exports
 export EDITOR='nvim'
 export GIT_EDITOR='nvim'
@@ -171,14 +175,12 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 
-export DOOM=$HOME/doom-emacs/bin/doom
-export PATH=$PATH:$DOOM
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 
-# Add podevn to PATH to manage multiple versions of CocoaPods
-export PATH=$PATH:$HOME/.podenv/bin
+eval "$(rbenv init -)"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+export PATH=$PATH:$HOME/.cargo/bin
 
 source $ZSH/oh-my-zsh.sh
 
