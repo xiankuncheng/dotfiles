@@ -40,6 +40,7 @@ This function should only modify configuration layer settings."
      command-log
      csv
      lua
+
      ;; brew install shellcheck
      ;; pip install bashate
      ;; npm install -g bash-language-server
@@ -125,6 +126,8 @@ This function should only modify configuration layer settings."
      git
      github
 
+     multiple-cursors
+
      (org :variables
           org-root-path "~/Dropbox/org/"
           org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
@@ -171,6 +174,7 @@ This function should only modify configuration layer settings."
           org-enable-roam-support t
           org-roam-directory "~/Dropbox/org/roam/"
           org-roam-db-location "~/org-roam.db"
+          org-roam-v2-ack t
           org-roam-capture-templates
           '(
             ("d" "default" plain (function org-roam-capture--get-point)
@@ -709,12 +713,11 @@ dump."
   )
 
 (defun dotspacemacs/user-config ()
-  "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
+  "Configuration for user code:
+This function is called at the very end of Spacemacs startup, after layer
+configuration.
+Put your configuration code here, except for variables that should be set
+before packages are loaded."
 
   (setq org-roam-server-host "127.0.0.1"
         org-roam-server-port 9090
