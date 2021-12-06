@@ -169,6 +169,9 @@ export REACT_EDITOR='emacsclient'
 
 export CLICOLOR=1
 
+export JAVA_HOME="/opt/homebrew/opt/openjdk@11/bin"
+export PATH=$PATH:$JAVA_HOME/java
+
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/emulator
