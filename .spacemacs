@@ -43,7 +43,7 @@ This function should only modify configuration layer settings."
 
      ;; brew install shellcheck
      ;; pip install bashate
-     ;; npm install -g bash-language-server
+     ;; yarn global add bash-language-server
      (shell-scripts :variables shell-script-backend 'lsp)
      yaml
      vimscript
@@ -56,7 +56,6 @@ This function should only modify configuration layer settings."
      ;; pandoc ;; pandoc not working on M1 chip for now + don't want to use rosetta
      slack
      spotify
-     confluence
      graphviz
      (ranger :variables
              ranger-override-dired 'ranger
@@ -64,31 +63,16 @@ This function should only modify configuration layer settings."
 
      emoji
      html
-     (typescript :variables
-                 typescript-backend 'tide
-                 tide-tsserver-executable "node_modules/typescript/bin/tsserver"
-                 tide-server-max-response-length 1024000
-                 tide-project-errors t
-                 typescript-linter 'tslint
-                 typescript-fmt-tool 'prettier
-                 typescript-fmt-on-save t)
-     ;; npm install -g vmd
-     (markdown :variables markdown-live-preview-engine 'vmd)
-
-     (rust :variables
-           rust-backend 'lsp
-           rust-format-on-save t
-           )
-     ;; npm install -g import-js
-     import-js
-     ;; npm install -g typescript-language-server typescript javascript-typescript-langserver
+     ;; yarn global add node-gyp import-js
+     tide
+     ;; yarn global add typescript-language-server typescript javascript-typescript-langserver
      (lsp :variables
           lsp-eslint-enable t
           lsp-enable-file-watchers nil
 
           lsp-rust-server 'rust-analyzer
           cargo-procerr-reload-on-modify t
-      )
+          )
      (javascript :variables
                  javascript-backend 'lsp
                  javascript-lsp-linter nil
@@ -102,6 +86,22 @@ This function should only modify configuration layer settings."
                  node-add-modules-path t)
      dap
 
+     (typescript :variables
+                 typescript-backend 'tide
+                 tide-tsserver-executable "node_modules/typescript/bin/tsserver"
+                 tide-server-max-response-length 1024000
+                 tide-project-errors t
+                 typescript-linter 'tslint
+                 typescript-fmt-tool 'prettier
+                 typescript-fmt-on-save t
+                 )
+     ;; yarn global add vmd
+     (markdown :variables markdown-live-preview-engine 'vmd)
+
+     (rust :variables
+           rust-backend 'lsp
+           rust-format-on-save t
+           )
      (shell :variables
             shell-default-shell 'vterm
             shell-default-term-shell "/bin/zsh"
@@ -121,14 +121,12 @@ This function should only modify configuration layer settings."
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-tab-key-behavior 'cycle
-                      auto-completion-idle-delay 0.2
+                      auto-completion-idle-delay 0.1
                       )
      better-defaults
      emacs-lisp
      git
      github
-
-     multiple-cursors
 
      (org :variables
           org-root-path "~/Dropbox/org/"
@@ -216,7 +214,7 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(
                                       cnfonts
-                                      org-roam-server
+                                      ;; org-roam-server
                                       org-tree-slide
                                       ox-slack
                                       lsp-tailwindcss
@@ -386,10 +384,11 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(doom-one
+   dotspacemacs-themes '(solarized-dark-high-contrast
+                         solarized-dark
+                         doom-one
                          doom-spacegrey
                          doom-vibrant
-                         solarized-dark
                          spacemacs-dark
                          spacemacs-light)
 
@@ -410,7 +409,7 @@ It should only modify the values of Spacemacs settings."
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
    dotspacemacs-default-font '("Fira Code"
-                               :size 20
+                               :size 16
                                :weight normal
                                :width normal)
 
