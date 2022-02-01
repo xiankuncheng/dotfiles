@@ -1,5 +1,5 @@
 {
-  "androidHome": "/Users/xiankuncheng/Library/Android/sdk",
+  "androidHome": "/opt/android_sdk",
   "enableAndroid": true,
   "enableIOS": true,
   "enablePhysicalIOS": true,
@@ -14,15 +14,14 @@
   },
   "reactNative": {
     "shortcuts": {
-      "enabled": true,
+      "enabled": false,
       "reload": "Alt+Shift+R",
       "openDevMenu": "Alt+Shift+D"
     }
   },
-  "darkMode": false,
+  "darkMode": "light",
   "showWelcomeAtStartup": false,
-  "suppressPluginErrors": true,
-  "disableSandy": true,
+  "suppressPluginErrors": false,
   "_persist": {
     "version": -1,
     "rehydrated": true
