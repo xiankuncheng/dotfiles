@@ -178,6 +178,10 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 
+# envs for building from soure codes of react native
+export ANDROID_SDK=$HOME/Library/Android/sdk
+export ANDROID_NDK=$HOME/Library/Android/android-ndk-r20b
+
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 

@@ -826,6 +826,7 @@ This function is called at the very end of Spacemacs initialization."
  '(global-git-gutter+-mode t)
  '(helm-completion-style 'emacs)
  '(highlight-changes-colors '("#d33682" "#6c71c4"))
+ '(highlight-parentheses-colors '("#3cafa5" "#c49619" "#3c98e0" "#7a7ed2" "#93a61a"))
  '(highlight-symbol-colors
    '("#3b6b40f432d6" "#07b9463c4d36" "#47a3341e358a" "#1d873c3f56d5" "#2d86441c3361" "#43b7362d3199" "#061d417f59d7"))
  '(highlight-symbol-foreground-color "#93a1a1")
@@ -871,7 +872,8 @@ This function is called at the very end of Spacemacs initialization."
  '(term-default-bg-color "#002b36")
  '(term-default-fg-color "#839496")
  '(vc-annotate-background-mode nil)
- '(warning-suppress-types '((lsp-mode) (use-package) (use-package)))
+ '(warning-suppress-log-types '((comp) (lsp-mode) (use-package) (use-package)))
+ '(warning-suppress-types '((comp) (lsp-mode) (use-package) (use-package)))
  '(weechat-color-list
    '(unspecified "#002b36" "#073642" "#a7020a" "#dc322f" "#5b7300" "#859900" "#866300" "#b58900" "#0061a8" "#268bd2" "#a00559" "#d33682" "#007d76" "#2aa198" "#839496" "#657b83"))
  '(xterm-color-names
@@ -883,5 +885,5 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((((class color) (min-colors 89)) (:foreground "#8d9fa1" :background "#002732")))))
 )
