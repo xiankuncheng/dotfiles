@@ -14,16 +14,17 @@
   },
   "reactNative": {
     "shortcuts": {
-      "enabled": false,
+      "enabled": true,
       "reload": "Alt+Shift+R",
       "openDevMenu": "Alt+Shift+D"
     }
   },
-  "darkMode": "light",
+  "darkMode": "dark",
   "showWelcomeAtStartup": false,
   "suppressPluginErrors": false,
   "_persist": {
     "version": -1,
     "rehydrated": true
-  }
+  },
+  "enablePluginMarketplace": false
 }
