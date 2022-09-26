@@ -204,3 +204,7 @@ eval "$(direnv hook zsh)"
 
 # To hook `thefuck` into ZSH
 eval $(thefuck --alias)
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"
