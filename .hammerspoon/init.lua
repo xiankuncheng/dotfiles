@@ -42,14 +42,17 @@ local APPNAMES = {
 	FileManager = "Finder",
 	Browser = "Google Chrome",
 	Xcode = "Xcode",
+	VSCode = "Visual Studio Code",
 	TextEditor = "Emacs",
 	AS = "Android Studio",
 	WeChat = "WeChat",
+	Discord = "Discord",
 	Preview = "Preview",
 	Music = "Music", -- "Spotify",
 	RNDebuger = "React Native Debugger",
 	Sagas = "Reactotron",
 	Simulator = "Simulator",
+	ChatGPT = "ChatGPT",
   Note = "Notion"
 }
 
@@ -380,17 +383,15 @@ hs.hotkey.bind(m_mod2, "1", change_layout(APP_LAYOUT[1]))
 ---
 --  加载/切换到指定App
 hs.fnutils.each({
-    -- {key = "b", app = APPNAMES.Xcode},
+    {key = "v", app = APPNAMES.VSCode},
     {key = "s", app = APPNAMES.IM},
+    {key = "d", app = APPNAMES.Discord},
     {key = "c", app = APPNAMES.Browser},
-    -- {key = "f", app = APPNAMES.FileManager},
     {key = "t", app = APPNAMES.TermApp},
-    -- {key = "m", app = APPNAMES.Mail},
     {key = "e", app = APPNAMES.Emacs},
+    {key = "g", app = APPNAMES.ChatGPT},
     {key = "u", app = APPNAMES.Doc},
     {key = "y", app = APPNAMES.Music},
-    -- {key = "w", app = APPNAMES.WeChat},
-    -- {key = "p", app = APPNAMES.Preview},
 }, function(meta)
     hs.hotkey.bind(m_switch_app, meta.key, launch_or_focus_window(meta.app))
 end)

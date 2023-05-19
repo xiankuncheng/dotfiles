@@ -1,5 +1,5 @@
 {
-  "androidHome": "/opt/android_sdk",
+  "androidHome": "/Users/xiankuncheng/Library/Android/sdk/",
   "enableAndroid": true,
   "enableIOS": true,
   "enablePhysicalIOS": true,
@@ -19,12 +19,15 @@
       "openDevMenu": "Alt+Shift+D"
     }
   },
-  "darkMode": "dark",
+  "darkMode": "system",
   "showWelcomeAtStartup": false,
   "suppressPluginErrors": false,
   "_persist": {
     "version": -1,
     "rehydrated": true
   },
-  "enablePluginMarketplace": false
+  "enablePluginMarketplace": false,
+  "server": {
+    "enabled": false
+  }
 }

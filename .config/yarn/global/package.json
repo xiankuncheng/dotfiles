@@ -1,8 +1,12 @@
 {
   "dependencies": {
+    "@sentry/wizard": "^2.4.1",
     "bash-language-server": "^2.0.0",
+    "expo-cli": "^6.3.7",
     "import-js": "^5.0.0",
     "javascript-typescript-langserver": "^2.11.3",
+    "jetifier": "^2.0.0",
+    "jetify": "^1.0.2",
     "node-gyp": "^8.4.1",
     "prettier": "^2.5.1",
     "typescript": "^4.5.2",

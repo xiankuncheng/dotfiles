@@ -1,4 +1,10 @@
 {
 	"optOut": false,
-	"lastUpdateCheck": 1657668541182
+	"lastUpdateCheck": 1678996028921,
+	"update": {
+		"latest": "28.17.0",
+		"current": "27.1.0",
+		"type": "major",
+		"name": "vercel"
+	}
 }

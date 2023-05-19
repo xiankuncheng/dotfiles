@@ -7,10 +7,9 @@
 		"node8DeploysDisabledAfter": 1613390400000,
 		"node8RuntimeDisabledAfter": 1615809600000,
 		"node8WarnAfter": 1600128000000,
-		"fetched": 1651003922216
+		"fetched": 1665019229291
 	},
 	"additionalAccounts": [],
 	"activeAccounts": {},
-	"analytics-uuid": "f50e7629-79e6-40e7-8fe2-fd205d685ffb",
-	"lastError": 1651009312791
+	"analytics-uuid": "f50e7629-79e6-40e7-8fe2-fd205d685ffb"
 }
