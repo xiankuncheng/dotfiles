@@ -170,8 +170,8 @@ export PATH="$HOME/doom-emacs/bin:$PATH"
 
 export CLICOLOR=1
 
-export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home"
-export PATH=$PATH:$JAVA_HOME/java
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home"
+export PATH=$PATH:$JAVA_HOME/bin
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/platform-tools
