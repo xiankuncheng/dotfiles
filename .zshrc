@@ -163,9 +163,10 @@ mktouch() {
 alias emuls="emulator -list-avds"
 
 # Exports
-export EDITOR='nvim'
-export GIT_EDITOR='nvim'
+export EDITOR='emacsclient'
+export GIT_EDITOR='emacsclient'
 export REACT_EDITOR='emacsclient'
+export PATH="$HOME/doom-emacs/bin:$PATH"
 
 export CLICOLOR=1
 
