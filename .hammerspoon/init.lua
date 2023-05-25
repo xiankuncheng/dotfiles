@@ -36,9 +36,9 @@ local APPNAMES = {
 	IM = "Slack",
 	Mail = "Mail",
 	Doc = "Dash",
-	Term = "iTerm2",
-	TermApp = "iTerm",
-  Emacs = "Emacs",
+	Term = "Warp",
+	TermApp = "Warp",
+    Emacs = "Emacs",
 	FileManager = "Finder",
 	Browser = "Google Chrome",
 	Xcode = "Xcode",
@@ -53,7 +53,7 @@ local APPNAMES = {
 	Sagas = "Reactotron",
 	Simulator = "Simulator",
 	ChatGPT = "ChatGPT",
-  Note = "Notion"
+    Note = "Notion"
 }
 
 -- 显示器
